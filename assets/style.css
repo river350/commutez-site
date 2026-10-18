@@ -1,0 +1,131 @@
+/* Commutez — same palette as the app (Shared/DesignSystem/Palette.swift):
+   paper-white or near-black canvas, one blue accent, hairlines, mono numbers. */
+
+:root {
+  --bg: #f5f3ef;
+  --fg: #1a1916;
+  --dim: rgba(26, 25, 22, 0.6);
+  --faint: rgba(26, 25, 22, 0.38);
+  --hairline: rgba(26, 25, 22, 0.12);
+  --accent: #4a6fa5;
+  --tile: #11100f;
+  --tile-fg: #f5f3ef;
+  --mono: ui-monospace, "SF Mono", "IBM Plex Mono", Menlo, Consolas, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Schibsted Grotesk", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #11100f;
+    --fg: #f5f3ef;
+    --dim: rgba(245, 243, 239, 0.6);
+    --faint: rgba(245, 243, 239, 0.38);
+    --hairline: rgba(245, 243, 239, 0.1);
+    --tile: #f5f3ef;
+    --tile-fg: #11100f;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 17px/1.55 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration-color: var(--faint); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--accent); }
+
+.wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+
+/* Header */
+.site-header { border-bottom: 1px solid var(--hairline); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; letter-spacing: -0.01em; }
+.brand img { width: 28px; height: 28px; border-radius: 7px; }
+.nav { display: flex; gap: 20px; font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; }
+.nav a { text-decoration: none; color: var(--dim); }
+.nav a:hover, .nav a[aria-current="page"] { color: var(--fg); }
+
+/* Hero */
+.hero { padding: 72px 0 56px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+.eyebrow { font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+h1 { font-size: clamp(40px, 8vw, 64px); line-height: 1.02; letter-spacing: -0.035em; margin: 0 0 18px; font-weight: 700; }
+.lede { font-size: 20px; color: var(--dim); margin: 0 0 28px; max-width: 30ch; }
+
+.badge-soon {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 18px; border: 1px solid var(--hairline); border-radius: 999px;
+  font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.badge-soon::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+/* The countdown tile, echoing the small widget */
+.tile {
+  width: 200px; aspect-ratio: 1; border-radius: 40px; padding: 22px;
+  background: var(--tile); color: var(--tile-fg);
+  display: flex; flex-direction: column; justify-content: space-between;
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.45);
+}
+.tile.urgent { background: var(--accent); color: #f5f3ef; }
+.tile-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; }
+.tile-number { font-family: var(--mono); font-size: 84px; line-height: 0.9; font-weight: 300; letter-spacing: -0.04em; }
+.tile-number small { font-size: 16px; letter-spacing: 0.08em; margin-left: 4px; font-weight: 500; }
+.tile-foot { font-family: var(--mono); font-size: 12px; opacity: 0.75; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Sections */
+section { padding: 48px 0; border-top: 1px solid var(--hairline); }
+h2 { font-size: 13px; font-family: var(--mono); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim); margin: 0 0 24px; }
+h3 { font-size: 19px; margin: 0 0 6px; letter-spacing: -0.01em; }
+
+.features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 40px; }
+.features p { margin: 0; color: var(--dim); font-size: 16px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 16px; }
+td { padding: 12px 0; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+td:first-child { width: 38%; font-weight: 500; padding-right: 16px; }
+td:last-child { color: var(--dim); }
+.note { color: var(--faint); font-size: 14px; margin-top: 16px; }
+
+/* Long-form pages (privacy, support) */
+.doc { padding-top: 56px; padding-bottom: 24px; }
+.doc h1 { font-size: clamp(34px, 6vw, 48px); }
+.doc .updated { font-family: var(--mono); font-size: 13px; color: var(--faint); text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 32px; }
+.doc h2 { margin-top: 44px; color: var(--fg); }
+.doc p, .doc li { color: var(--dim); }
+.doc strong { color: var(--fg); font-weight: 600; }
+.doc ul { padding-left: 20px; }
+.doc li { margin: 6px 0; }
+.summary { border-left: 2px solid var(--accent); padding: 4px 0 4px 18px; margin: 0 0 8px; }
+.summary p { color: var(--fg); margin: 0; }
+
+details { border-bottom: 1px solid var(--hairline); padding: 16px 0; }
+details summary { cursor: pointer; font-weight: 600; color: var(--fg); list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+details summary::-webkit-details-marker { display: none; }
+details summary::after { content: "+"; font-family: var(--mono); color: var(--faint); }
+details[open] summary::after { content: "–"; }
+details p { margin: 10px 0 0; }
+
+.contact-card { border: 1px solid var(--hairline); border-radius: 16px; padding: 22px 24px; margin: 8px 0; }
+.contact-card p { margin: 0 0 6px; }
+.contact-card a { font-family: var(--mono); color: var(--fg); }
+
+/* Footer */
+footer { border-top: 1px solid var(--hairline); margin-top: 48px; padding: 28px 0 48px; font-size: 14px; color: var(--faint); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+footer nav { display: flex; gap: 18px; }
+footer a { color: var(--dim); text-decoration: none; }
+
+@media (max-width: 640px) {
+  .hero { grid-template-columns: 1fr; padding-top: 48px; gap: 32px; }
+  .tile { width: 160px; border-radius: 34px; padding: 18px; }
+  .tile-number { font-size: 64px; }
+  .features { grid-template-columns: 1fr; gap: 24px; }
+  .nav { gap: 14px; }
+}

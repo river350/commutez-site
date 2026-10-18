@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy — Commutez</title>
+  <meta name="description" content="How Commutez handles your data: no account, no tracking, no analytics, and no servers of our own.">
+  <link rel="canonical" href="https://commutez.app/privacy/">
+  <link rel="icon" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f5f3ef" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#11100f" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/"><img src="/assets/icon-256.png" alt="">Commutez</a>
+      <nav class="nav">
+        <a href="/support/">Support</a>
+        <a href="/privacy/" aria-current="page">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap doc">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Effective 18 October 2026</p>
+
+    <div class="summary">
+      <p><strong>The short version:</strong> Commutez has no account, no ads, no analytics and no tracking, and runs no servers of its own. Your addresses and settings stay on your devices and in your own iCloud. To plan a trip, the app sends coordinates to public transport and weather services, and nothing else about you.</p>
+    </div>
+
+    <h2>Who is responsible</h2>
+    <p>Commutez is developed by Kristian Frydstad, Norway, who is the data controller for the little data described below. Contact: <a href="mailto:support@commutez.app">support@commutez.app</a>.</p>
+
+    <h2>Data stored on your devices</h2>
+    <p>Your home and work addresses (or a station you pick instead), your schedule, chosen lines and other settings are stored on your device. If you are signed in to iCloud, these settings are synced between your own iPhone, Apple Watch and Mac through Apple's iCloud key-value storage. This data is stored in your iCloud account. The developer cannot see it.</p>
+
+    <h2>Data sent to plan your trips</h2>
+    <p>To find departures, the app sends coordinates of your start and destination (your saved places, or your current position if you have turned on location) directly from your device to the transit service for your region:</p>
+    <ul>
+      <li><strong>Norway:</strong> Entur (journey planner, address search, stops and shared scooter availability)</li>
+      <li><strong>Sweden:</strong> Trafiklab / ResRobot and SL (service alerts in Stockholm)</li>
+      <li><strong>Finland and Estonia:</strong> Digitransit</li>
+      <li><strong>Greater London:</strong> Transport for London</li>
+      <li><strong>Car, bike, walking and address search:</strong> Apple Maps</li>
+      <li><strong>Weather:</strong> MET Norway (api.met.no), which receives the coordinates of your saved places</li>
+    </ul>
+    <p>These requests do not include your name, Apple ID or any identifier tied to you. Each service handles the request under its own privacy policy, and like any web service it may see your IP address.</p>
+
+    <h2>Location</h2>
+    <p>Location is <strong>off by default</strong>, and Commutez only asks for it if you turn on Location in the app. When you do:</p>
+    <ul>
+      <li>Geofences around your home and work are monitored by iOS on your device to switch direction automatically. This needs “Always” permission.</li>
+      <li>While the app is open, your current position may be used as the starting point of a trip and sent to the services above.</li>
+    </ul>
+    <p>Your location is never stored by the developer, and never sold or shared for any other purpose. You can turn it off at any time in the app or in iOS Settings.</p>
+
+    <h2>Notifications</h2>
+    <p>Departure alerts, Live Activities and the countdown badge are scheduled locally on your device. If you send feedback, the app may ask permission to notify you when the developer replies. That notification is delivered through Apple's iCloud (CloudKit) service.</p>
+
+    <h2>Feedback you choose to send</h2>
+    <p>If you send feedback from inside the app, it is stored in the app's CloudKit database at Apple. A feedback report contains:</p>
+    <ul>
+      <li>your message, and a screenshot if you choose to attach one,</li>
+      <li>diagnostics shown to you before sending: app version, iOS version, device model, language, and a summary of your settings (for example which planner and alerts are in use),</li>
+      <li>if you allow it, the departures shown at the time, for example line numbers and times.</li>
+    </ul>
+    <p>Diagnostics never include your addresses or coordinates. The developer sees an anonymous CloudKit identifier, not your name or Apple ID, unless you write it in your message. If you are not signed in to iCloud, feedback is sent by email instead, and the developer then sees your email address.</p>
+    <p>Feedback is kept only as long as it is needed to follow up, and is deleted on request.</p>
+
+    <h2>What Commutez does not do</h2>
+    <ul>
+      <li>No user accounts or sign-in</li>
+      <li>No advertising, analytics or crash-reporting SDKs</li>
+      <li>No tracking across apps or websites, and no data brokers</li>
+      <li>No selling or sharing of personal data</li>
+    </ul>
+
+    <h2>Your rights</h2>
+    <p>Under the GDPR you can ask for access to, correction of, or deletion of personal data the developer holds about you. In practice that is only feedback you have sent. Write to <a href="mailto:support@commutez.app">support@commutez.app</a>. You can delete everything stored on your device by deleting the app. Data in your iCloud is managed in your Apple ID settings. You also have the right to complain to the Norwegian Data Protection Authority (<a href="https://www.datatilsynet.no/en/">Datatilsynet</a>).</p>
+
+    <h2>Children</h2>
+    <p>Commutez is not directed at children under 13 and does not knowingly collect personal data from them.</p>
+
+    <h2>Changes</h2>
+    <p>If this policy changes, the new version will be published on this page with a new effective date.</p>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 Commutez</span>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/support/">Support</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
