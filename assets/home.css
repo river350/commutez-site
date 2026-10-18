@@ -155,7 +155,11 @@ p { margin: 0; }
 .island-x .row { display: flex; justify-content: space-between; align-items: flex-end; gap: 8px; }
 .cap { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; color: var(--muted-dark); text-transform: uppercase; display: block; }
 .island-x .big { font-family: var(--mono); font-feature-settings: "ss04"; font-weight: 300; font-size: 30px; line-height: 1; font-variant-numeric: tabular-nums; }
-.is-urgent .island-x .big, .is-urgent .watch .big { color: var(--accent-on-dark); }
+/* Like the apps: the Live Activity and Dynamic Island keep their colours
+   when it's time to go; the watch face turns blue. */
+.watch .face { transition: background .4s ease; }
+.is-urgent .watch .face { background: var(--accent); }
+.is-urgent .watch .cap { color: rgba(255,255,255,.8); }
 .island-x .ride { font-size: 13px; font-weight: 500; }
 .island-x .line { font-family: var(--mono); font-size: 10px; color: var(--muted-dark); }
 .pills { display: flex; flex-direction: column; align-items: center; gap: 10px; }
@@ -347,18 +351,21 @@ p { margin: 0; }
   /* Fixed lengths in px, never the viewport height: Safari's toolbar
      changes the viewport while you scroll, which made the steps jitter. */
   :root { --pin-top: 72px; --step: 340px; scroll-snap-type: y proximity; }
-  .day-scroll { overflow: visible; padding-bottom: 0; }
-  .day { min-width: 0; gap: 72px; }
-  .day-row.head { display: none; }
-  .day-row { display: block; position: relative; }
-  .day-row + .day-row { padding-top: 0; border-top: 0; }
-  .day-pin {
-    position: sticky; top: var(--pin-top);
-    display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px;
+  /* One pinned stage for the whole day: the three surfaces sit on top of
+     each other and take turns, 4 steps each, so Dynamic Island hands
+     straight over to Lock Screen and then Home Screen. */
+  .day-scroll { overflow: visible; padding-bottom: 0; position: relative; }
+  .day {
+    min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr);
+    position: sticky; top: var(--pin-top); background: var(--paper);
     padding-top: env(safe-area-inset-top, 0px);
-    background: var(--paper);
   }
-  .day-track { display: block; height: calc(var(--step) * 4); }
+  .day-row.head { display: none; }
+  .day-row:not(.head) { grid-area: 1 / 1; display: block; opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+  .day-row.is-current { opacity: 1; pointer-events: auto; }
+  .day-row + .day-row { padding-top: 0; border-top: 0; }
+  .day-pin { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .day-track { display: block; height: calc(var(--step) * 12); }
   .day-snap { display: block; position: absolute; left: 0; width: 1px; height: 1px; scroll-snap-align: start; scroll-margin-top: var(--pin-top); pointer-events: none; }
   .row-head { grid-row: 1; }
   .row-head strong { font-size: 24px; }
@@ -375,5 +382,5 @@ p { margin: 0; }
   .day-steps span.on { width: 22px; border-radius: 4px; background: var(--accent); }
 }
 @media (max-width: 760px) and (prefers-reduced-motion: reduce) {
-  .moment, .day-steps span { transition: none; }
+  .moment, .day-steps span, .day-row { transition: none; }
 }

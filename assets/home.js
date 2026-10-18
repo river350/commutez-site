@@ -72,33 +72,41 @@
     });
   });
 
-  // ---- A normal day: pinned surfaces on phones ---------------------------
-  // Each surface's content is sticky; a track of fixed-length steps after it
-  // gives the scroll room. How far the block has been pinned, in px, picks
-  // the moment — never the viewport height, which Safari's toolbar changes
-  // mid-scroll. A snap point per step lets the page settle on each time.
+  // ---- A normal day: one pinned stage on phones --------------------------
+  // The day section pins as a whole; a track of fixed-length steps after it
+  // gives the scroll room: 4 steps per surface, surfaces in turn. How far it
+  // has been pinned, in px, picks surface and moment — never the viewport
+  // height, which Safari's toolbar changes mid-scroll. A snap point per step
+  // lets the page settle on each time.
   var phone = window.matchMedia('(max-width: 760px)');
+  var stage = document.querySelector('.day');
+  var scroller = document.querySelector('.day-scroll');
   var rows = Array.prototype.slice.call(document.querySelectorAll('.day-row:not(.head)')).map(function (row) {
     var pin = row.querySelector('.day-pin');
     var moments = Array.prototype.slice.call(row.querySelectorAll('.moment'));
     var dots = document.createElement('div');
     dots.className = 'day-steps';
     dots.setAttribute('aria-hidden', 'true');
-    moments.forEach(function (m, i) {
-      dots.appendChild(document.createElement('span'));
+    moments.forEach(function () { dots.appendChild(document.createElement('span')); });
+    if (pin) pin.appendChild(dots);
+    return { row: row, moments: moments, dots: Array.prototype.slice.call(dots.children), current: -1 };
+  });
+  var totalSteps = rows.reduce(function (n, r) { return n + r.moments.length; }, 0);
+  if (scroller && stage) {
+    for (var s = 0; s < totalSteps; s++) {
       var snap = document.createElement('span');
       snap.className = 'day-snap';
       snap.setAttribute('aria-hidden', 'true');
-      snap.style.top = 'calc(var(--step) * ' + i + ')';
-      row.appendChild(snap);
-    });
-    if (pin) pin.appendChild(dots);
+      snap.style.top = 'calc(var(--step) * ' + s + ')';
+      scroller.appendChild(snap);
+    }
     var track = document.createElement('div');
     track.className = 'day-track';
     track.setAttribute('aria-hidden', 'true');
-    row.appendChild(track);
-    return { row: row, pin: pin, moments: moments, dots: Array.prototype.slice.call(dots.children), current: -1 };
-  });
+    scroller.appendChild(track);
+  }
+
+  function px(el, prop) { return parseFloat(getComputedStyle(el).getPropertyValue(prop)) || 0; }
 
   function px(el, prop) { return parseFloat(getComputedStyle(el).getPropertyValue(prop)) || 0; }
 
@@ -112,16 +120,24 @@
   var ticking = false;
   function update() {
     ticking = false;
-    if (!phone.matches) { rows.forEach(function (r) { show(r, 0); }); return; }
+    if (!phone.matches || !scroller) {
+      rows.forEach(function (r) { show(r, 0); r.row.classList.remove('is-current'); });
+      return;
+    }
     var root = document.documentElement;
     var pinTop = px(root, '--pin-top');
     var step = px(root, '--step') || 340;
+    // px the stage has travelled since it pinned; +step/2 so a snap that
+    // lands a pixel short still counts as that step
+    var pinned = pinTop - scroller.getBoundingClientRect().top + step / 2;
+    var index = Math.min(totalSteps - 1, Math.floor(Math.max(0, pinned) / step));
+    var before = 0;
     rows.forEach(function (r) {
-      // px the block has travelled since it pinned; +step/2 so a snap that
-      // lands a pixel short still counts as that step
-      var pinned = pinTop - r.row.getBoundingClientRect().top + step / 2;
-      var index = Math.floor(Math.max(0, pinned) / step);
-      show(r, Math.min(r.moments.length - 1, index));
+      var n = r.moments.length;
+      var mine = index >= before && index < before + n;
+      r.row.classList.toggle('is-current', mine);
+      show(r, mine ? index - before : (index < before ? 0 : n - 1));
+      before += n;
     });
   }
   var settle = 0;
