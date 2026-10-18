@@ -19,7 +19,7 @@
   <meta name="theme-color" content="#f5f3ef">
   <link rel="preload" href="/assets/fonts/IBMPlexMono-Light.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="/assets/fonts/SchibstedGrotesk.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="/assets/home.css?v=9">
+  <link rel="stylesheet" href="/assets/home.css?v=10">
 </head>
 <body>
 
@@ -192,6 +192,13 @@
       <p class="eyebrow">En vanlig tirsdag</p>
       <h2 class="h2">Appen du aldri trenger å åpne.</h2>
       <p class="lede"><span class="t-long">Commutez er laget for å kikkes på. Under ser du en helt vanlig pendlerdag. Alt skjer i Dynamic Island, på låseskjermen og i widgetene, uten at du åpner appen én eneste gang. Du velger selv hva du vil ha, hver for seg for turen til jobb og turen hjem.</span><span class="t-short">En vanlig pendlerdag, i Dynamic Island, på låseskjermen og i widgetene. Appen er lukket hele tiden.</span></p>
+      <div class="day-filter" role="group" aria-label="Visninger som vises">
+        <span class="eyebrow">Vis meg</span>
+        <button type="button" class="toggle" aria-pressed="true" data-surface="island"><span class="switch" aria-hidden="true"></span>Dynamic Island</button>
+        <button type="button" class="toggle" aria-pressed="true" data-surface="lock"><span class="switch" aria-hidden="true"></span>Låseskjerm</button>
+        <button type="button" class="toggle" aria-pressed="true" data-surface="home"><span class="switch" aria-hidden="true"></span>Hjemskjerm</button>
+        <p class="filter-note"><span class="t-long">I appen styrer Live Activity både Dynamic Island og låseskjermen, og widgetene legger du til selv. Her velger du hva du vil se.</span><span class="t-short">Velg hva du vil se. I appen er Dynamic Island og låseskjermen én bryter.</span></p>
+      </div>
     </div>
 
     <!-- Desktop: rutenett med tidspunkter bortover og visninger nedover.
@@ -206,7 +213,7 @@
           <div class="col-head"><span class="t">16:07</span><strong>Hjem i tide</strong><span>Toget er 3 minutter forsinket, så påminnelsen kom 3 minutter senere.</span></div>
         </div>
 
-        <div class="day-row">
+        <div class="day-row" data-surface="island">
           <div class="day-pin">
             <div class="row-head"><span class="cap">Dynamic Island</span><strong>Øverst i alle apper</strong><span>Trykk og hold for full visning.</span></div>
             <figure class="moment is-active"><figcaption><b>06:55</b> Vinduet åpner</figcaption>
@@ -220,7 +227,7 @@
           </div>
         </div>
 
-        <div class="day-row">
+        <div class="day-row" data-surface="lock">
           <div class="day-pin">
             <div class="row-head"><span class="cap">Låseskjerm</span><strong>Den dukker opp av seg selv</strong><span>Ingen alarm å stille inn. Den kommer når det gjelder og forsvinner når du går.</span></div>
             <figure class="moment is-active"><figcaption><b>06:55</b> En halvtime før du må gå</figcaption>
@@ -239,7 +246,7 @@
           </div>
         </div>
 
-        <div class="day-row">
+        <div class="day-row" data-surface="home">
           <div class="day-pin">
             <div class="row-head"><span class="cap">Hjemskjerm</span><strong>Alltid der, bak appene dine</strong><span>Lås opp telefonen, og svaret står der allerede.</span></div>
             <figure class="moment is-active"><figcaption><b>06:55</b> 30 minutter igjen</figcaption>
@@ -277,12 +284,7 @@
 
     <div class="day-end">
     <div class="choices">
-      <div class="lead"><span class="eyebrow">I appen: Innstillinger › Til jobb</span><strong><span class="t-long">Du velger hva som skal vises, hver for seg for turen til jobb og turen hjem.</span><span class="t-short">Du velger hva som vises, for turen til jobb og turen hjem.</span></strong></div>
-      <span class="toggle"><span class="switch" role="img" aria-label="på"></span>Live Activity</span>
-      <span class="toggle"><span class="switch" role="img" aria-label="på"></span>Dra nå-varsel</span>
-      <span class="toggle off"><span class="switch" role="img" aria-label="av"></span>Nedtelling på ikonet</span>
-      <span class="toggle"><span class="switch" role="img" aria-label="på"></span>Trykk på håndleddet</span>
-      <span class="toggle off"><span class="switch" role="img" aria-label="av"></span>Varsel før du skal av</span>
+      <div class="lead"><span class="eyebrow">Også i innstillingene, for hver reise</span><strong>Dra nå-varsel, nedtelling på app-ikonet, trykk på håndleddet og varsel før du skal av.</strong></div>
     </div>
 
     <p class="closing"><span class="t-long">Åpne appen når du vil ha detaljene: alle avganger, bytter, ruten tegnet som en linje og regn time for time.</span><span class="t-short">Åpne appen for detaljene: alle avganger, bytter, ruten og regn time for time.</span></p>
@@ -440,6 +442,6 @@
   </div>
 </footer>
 
-<script src="/assets/home.js?v=8" defer></script>
+<script src="/assets/home.js?v=10" defer></script>
 </body>
 </html>

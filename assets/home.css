@@ -256,6 +256,17 @@ p { margin: 0; }
 .switch::after { content: ""; position: absolute; top: 2px; left: 14px; width: 12px; height: 12px; border-radius: 50%; background: #fff; }
 .off .switch { background: #c9c5be; }
 .off .switch::after { left: 2px; }
+/* "Show me": pick which surfaces the day walks through */
+.day-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 24px; margin-top: 8px; }
+.day-filter .eyebrow { flex: 1 1 100%; }
+button.toggle { appearance: none; background: none; border: 0; padding: 8px 0; min-height: 44px; cursor: pointer; font: inherit; font-family: var(--mono); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+button.toggle:hover { color: var(--accent); }
+.toggle[aria-pressed="false"] { color: var(--muted); }
+.toggle[aria-pressed="false"] .switch { background: #c9c5be; }
+.toggle[aria-pressed="false"] .switch::after { left: 2px; }
+.switch::after { transition: left .2s ease; }
+.filter-note { flex: 1 1 100%; font-size: 14px; color: var(--muted); max-width: 60ch; }
+.day-row.is-off { display: none !important; }
 .closing { font-size: 17px; color: var(--text-2); max-width: 60ch; padding-top: 8px; border-top: 1px solid var(--hair); }
 
 /* ---------- week ---------- */

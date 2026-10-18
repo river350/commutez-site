@@ -102,7 +102,13 @@
     track.setAttribute('aria-hidden', 'true');
     track.style.height = 'calc(var(--screen) * ' + (count - 1) + ')';
     container.appendChild(track);
-    return { container: container, snaps: snaps, count: count, onStep: onStep, current: -1 };
+    return { container: container, snaps: snaps, track: track, count: count, onStep: onStep, current: -1 };
+  }
+
+  function removeStage(stage) {
+    if (!stage) return;
+    stage.snaps.forEach(function (s) { s.remove(); });
+    stage.track.remove();
   }
 
   function stepOf(stage) {
@@ -121,12 +127,16 @@
     if (!snap) return;
     var bar = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bar')) || 0;
     var y = snap.getBoundingClientRect().top + window.pageYOffset - bar;
-    // the page has scroll-behavior: smooth in CSS; switch it off for the jump
+    // Switch off smooth scrolling and snapping for the jump. Safari otherwise
+    // re-snaps to the step it remembers as soon as the panel changes, which
+    // flashed the new tab and sent you back to the old one.
     var root = document.documentElement;
-    var prev = root.style.scrollBehavior;
     root.style.scrollBehavior = 'auto';
+    root.style.scrollSnapType = 'none';
     window.scrollTo(0, Math.round(y));
-    root.style.scrollBehavior = prev;
+    function restore() { root.style.scrollSnapType = ''; root.style.scrollBehavior = ''; }
+    window.requestAnimationFrame(function () { window.requestAnimationFrame(restore); });
+    setTimeout(restore, 100); // in case frames are paused
   }
 
   // "One number": one step per surface tab.
@@ -152,7 +162,9 @@
     });
   });
 
-  // "A normal day": three surfaces × four moments, surfaces in turn.
+  // "A normal day": the surfaces you have switched on, four moments each,
+  // surfaces in turn. "Show me" switches surfaces on and off; the stage is
+  // rebuilt so the page gets shorter with fewer surfaces.
   var dayRows = Array.prototype.slice.call(document.querySelectorAll('.day-row:not(.head)')).map(function (row) {
     var pin = row.querySelector('.day-pin');
     var moments = Array.prototype.slice.call(row.querySelectorAll('.moment'));
@@ -161,12 +173,17 @@
     dots.setAttribute('aria-hidden', 'true');
     moments.forEach(function () { dots.appendChild(document.createElement('span')); });
     if (pin) pin.appendChild(dots);
-    return { row: row, moments: moments, dots: Array.prototype.slice.call(dots.children) };
+    return { row: row, surface: row.getAttribute('data-surface'), moments: moments, dots: Array.prototype.slice.call(dots.children) };
   });
+
+  function shownRows() {
+    return dayRows.filter(function (r) { return !r.row.classList.contains('is-off'); });
+  }
 
   function showDay(index) {
     var before = 0;
-    dayRows.forEach(function (r) {
+    dayRows.forEach(function (r) { r.row.classList.remove('is-current'); });
+    shownRows().forEach(function (r) {
       var n = r.moments.length;
       var mine = index >= before && index < before + n;
       var m = mine ? index - before : (index < before ? 0 : n - 1);
@@ -177,10 +194,31 @@
     });
   }
 
-  var daySteps = dayRows.reduce(function (n, r) { return n + r.moments.length; }, 0);
-  var dayStage = makeStage(document.querySelector('.day-scroll'), daySteps, showDay);
+  var dayScroller = document.querySelector('.day-scroll');
+  var dayStage = null;
+  var stages = [];
+  function buildDayStage() {
+    removeStage(dayStage);
+    var steps = shownRows().reduce(function (n, r) { return n + r.moments.length; }, 0);
+    dayStage = makeStage(dayScroller, steps, showDay);
+    stages = [howStage, dayStage].filter(Boolean);
+  }
+  buildDayStage();
 
-  var stages = [howStage, dayStage].filter(Boolean);
+  var filterButtons = Array.prototype.slice.call(document.querySelectorAll('.day-filter [data-surface]'));
+  filterButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var on = btn.getAttribute('aria-pressed') === 'true';
+      var onCount = filterButtons.filter(function (b) { return b.getAttribute('aria-pressed') === 'true'; }).length;
+      if (on && onCount === 1) return; // keep at least one surface
+      btn.setAttribute('aria-pressed', on ? 'false' : 'true');
+      var key = btn.getAttribute('data-surface');
+      dayRows.forEach(function (r) { if (r.surface === key) r.row.classList.toggle('is-off', on); });
+      buildDayStage();
+      showDay(0);
+      update();
+    });
+  });
 
   function update() {
     ticking = false;

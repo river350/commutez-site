@@ -18,7 +18,7 @@
   <meta name="theme-color" content="#f5f3ef">
   <link rel="preload" href="/assets/fonts/IBMPlexMono-Light.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="/assets/fonts/SchibstedGrotesk.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="/assets/home.css?v=9">
+  <link rel="stylesheet" href="/assets/home.css?v=10">
 </head>
 <body>
 
@@ -191,6 +191,13 @@
       <p class="eyebrow">A normal Tuesday</p>
       <h2 class="h2">The app you never have to open.</h2>
       <p class="lede"><span class="t-long">Commutez is built to be glanced at. Below is one ordinary commuting day. Everything you see happens in the Dynamic Island, on the lock screen and in your widgets, without opening the app once. You decide which of them you want, separately for the trip to work and the trip home.</span><span class="t-short">One ordinary commuting day, on the Dynamic Island, the lock screen and your widgets. The app stays closed.</span></p>
+      <div class="day-filter" role="group" aria-label="Surfaces to show">
+        <span class="eyebrow">Show me</span>
+        <button type="button" class="toggle" aria-pressed="true" data-surface="island"><span class="switch" aria-hidden="true"></span>Dynamic Island</button>
+        <button type="button" class="toggle" aria-pressed="true" data-surface="lock"><span class="switch" aria-hidden="true"></span>Lock Screen</button>
+        <button type="button" class="toggle" aria-pressed="true" data-surface="home"><span class="switch" aria-hidden="true"></span>Home Screen</button>
+        <p class="filter-note"><span class="t-long">In the app the Live Activity covers both the Dynamic Island and the lock screen, and widgets you add yourself. Pick what you want to see here.</span><span class="t-short">Pick what you want to see. In the app, one switch covers the Dynamic Island and lock screen.</span></p>
+      </div>
     </div>
 
     <!-- Desktop: a grid, times across and surfaces down.
@@ -207,7 +214,7 @@
           <div class="col-head"><span class="t">16:07</span><strong>Home on time</strong><span>The train is 3 minutes late, so the reminder came 3 minutes later.</span></div>
         </div>
 
-        <div class="day-row">
+        <div class="day-row" data-surface="island">
           <div class="day-pin">
             <div class="row-head"><span class="cap">Dynamic Island</span><strong>At the top of every app</strong><span>Press and hold for the full view.</span></div>
             <figure class="moment is-active"><figcaption><b>06:55</b> The window opens</figcaption>
@@ -221,7 +228,7 @@
           </div>
         </div>
 
-        <div class="day-row">
+        <div class="day-row" data-surface="lock">
           <div class="day-pin">
             <div class="row-head"><span class="cap">Lock Screen</span><strong>It shows up by itself</strong><span>No alarm to set. It arrives when it matters and leaves when you do.</span></div>
             <figure class="moment is-active"><figcaption><b>06:55</b> Half an hour before you leave</figcaption>
@@ -240,7 +247,7 @@
           </div>
         </div>
 
-        <div class="day-row">
+        <div class="day-row" data-surface="home">
           <div class="day-pin">
             <div class="row-head"><span class="cap">Home Screen</span><strong>Always on, behind your apps</strong><span>Unlock your phone and the answer is already there.</span></div>
             <figure class="moment is-active"><figcaption><b>06:55</b> 30 minutes to go</figcaption>
@@ -277,12 +284,7 @@
     </div>
     <div class="day-end">
     <div class="choices">
-      <div class="lead"><span class="eyebrow">In the app: Settings › To work</span><strong><span class="t-long">You pick what shows up, separately for the trip to work and the trip home.</span><span class="t-short">You pick what shows up, for the trip to work and the trip home.</span></strong></div>
-      <span class="toggle"><span class="switch" role="img" aria-label="on"></span>Live Activity</span>
-      <span class="toggle"><span class="switch" role="img" aria-label="on"></span>Leave-now alert</span>
-      <span class="toggle off"><span class="switch" role="img" aria-label="off"></span>Icon countdown</span>
-      <span class="toggle"><span class="switch" role="img" aria-label="on"></span>Wrist tap</span>
-      <span class="toggle off"><span class="switch" role="img" aria-label="off"></span>Buzz before your stop</span>
+      <div class="lead"><span class="eyebrow">Also in settings, for each trip</span><strong>A leave-now alert, a countdown on the app icon, a tap on your wrist and a buzz before your stop.</strong></div>
     </div>
 
     <p class="closing"><span class="t-long">Open the app when you want the details: every departure, the transfers, your route drawn as a line, and rain by the hour.</span><span class="t-short">Open the app for the details: every departure, transfers, your route and rain by the hour.</span></p>
@@ -440,6 +442,6 @@
   </div>
 </footer>
 
-<script src="/assets/home.js?v=8" defer></script>
+<script src="/assets/home.js?v=10" defer></script>
 </body>
 </html>
