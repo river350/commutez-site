@@ -9,8 +9,18 @@ Hostes gratis på GitHub Pages med eget domene og automatisk HTTPS.
 | `privacy/index.html` | https://commutez.app/privacy/ | Privacy Policy URL |
 | `support/index.html` | https://commutez.app/support/ | Support URL |
 
-Ingen byggesteg, ingen eksterne skript eller fonter (systemfonter: SF på
-Apple-enheter), ingen sporing. Farger fra appens `Palette.swift`.
+Ingen byggesteg, ingen eksterne skript eller fonter, ingen sporing. Farger
+fra appens `Palette.swift`.
+
+Forsiden (`index.html` + `assets/home.css` + `assets/home.js`) bruker appens
+egne fonter, IBM Plex Mono og Schibsted Grotesk, servert fra `assets/fonts/`
+(SIL Open Font License, lisenstekstene ligger ved siden av fontfilene).
+Personvern-, support- og 404-sidene bruker fortsatt `assets/style.css` med
+systemfonter.
+
+Skjermbildene i `assets/screens/` er tatt i iPhone 17 Pro-simulatoren med
+demo-reisen Tøyen → Majorstuen og ekte Entur-data, beskåret og komprimert til
+JPEG.
 
 ## Publisere (engangsoppsett)
 
@@ -40,10 +50,16 @@ Apple-enheter), ingen sporing. Farger fra appens `Palette.swift`.
 5. (Anbefalt) Verifiser domenet i GitHub: profilens Settings → Pages →
    *Add a domain*. Da kan ingen andre ta over `commutez.app` på GitHub Pages.
 
+## Når betaen åpner
+
+Søk etter `BETA LINK` i `index.html` og bytt `<span class="btn light">Beta
+link coming soon</span>` med lenken til den offentlige TestFlight-betaen. Flytt
+`now` i `.stages` fra «Pilot» til «Public beta».
+
 ## Når appen er i App Store
 
-Bytt ut `<span class="badge-soon">…</span>` i `index.html` med lenken til
-App Store-siden.
+Bytt beta-knappene (topp, hero og `#get`) til lenken til App Store-siden, og
+flytt `now` i `.stages` til «App Store».
 
 ## Universal links senere
 
