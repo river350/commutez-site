@@ -69,9 +69,15 @@
       var panel = document.getElementById(t.getAttribute('aria-controls'));
       if (panel) panel.hidden = !on;
     });
-    if (focus) tab.focus();
-    // keep the active tab in view in the narrow tab row
-    if (phone.matches && tab.scrollIntoView) tab.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    if (focus) tab.focus({ preventScroll: true });
+    // Keep the active tab in view in the narrow tab row. Scroll only the row:
+    // tab.scrollIntoView() would also touch the page and cancel a scroll
+    // that's under way (it broke tapping the tabs on iPhone).
+    var row = tab.parentElement;
+    if (phone.matches && row && row.scrollWidth > row.clientWidth) {
+      var left = tab.offsetLeft - (row.clientWidth - tab.offsetWidth) / 2;
+      row.scrollTo({ left: Math.max(0, left), behavior: 'auto' });
+    }
   }
 
   // ---- Pinned stages (phones) -----------------------------------------
@@ -108,9 +114,19 @@
     return Math.min(stage.count - 1, Math.max(0, Math.floor(travelled / step)));
   }
 
+  // Jump straight to step k. Not smooth: with hard snapping a smooth scroll
+  // gets caught on every step in between.
   function scrollToStep(stage, k) {
     var snap = stage.snaps[k];
-    if (snap && snap.scrollIntoView) snap.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    if (!snap) return;
+    var bar = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bar')) || 0;
+    var y = snap.getBoundingClientRect().top + window.pageYOffset - bar;
+    // the page has scroll-behavior: smooth in CSS; switch it off for the jump
+    var root = document.documentElement;
+    var prev = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    window.scrollTo(0, Math.round(y));
+    root.style.scrollBehavior = prev;
   }
 
   // "One number": one step per surface tab.
@@ -120,8 +136,11 @@
 
   tabs.forEach(function (tab, i) {
     tab.addEventListener('click', function () {
-      if (phone.matches && howStage) scrollToStep(howStage, i);
-      else select(tab, false);
+      select(tab, false);
+      if (phone.matches && howStage) {
+        howStage.current = i;
+        scrollToStep(howStage, i);
+      }
     });
     tab.addEventListener('keydown', function (e) {
       var next = null;
