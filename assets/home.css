@@ -46,6 +46,7 @@ body {
   font-size: 17px;
   line-height: 1.55;
   overflow-x: hidden;
+  overflow-x: clip; /* clip, not hidden: keeps position: sticky working in Safari */
 }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
@@ -335,7 +336,7 @@ p { margin: 0; }
 
 /* Desktop: the pin wrapper is invisible to the grid. */
 .day-pin { display: contents; }
-.day-steps { display: none; }
+.day-steps, .day-track, .day-snap { display: none; }
 
 /* Phone: each surface pins to the screen while you scroll, and its four
    moments replace each other in place (06:55 → 07:23 → 07:34 → 16:07).
@@ -343,24 +344,30 @@ p { margin: 0; }
    home.js picks the active moment from the scroll position; without JS the
    first moment stays visible. */
 @media (max-width: 760px) {
+  /* Fixed lengths in px, never the viewport height: Safari's toolbar
+     changes the viewport while you scroll, which made the steps jitter. */
+  :root { --pin-top: 72px; --step: 340px; scroll-snap-type: y proximity; }
   .day-scroll { overflow: visible; padding-bottom: 0; }
-  .day { min-width: 0; gap: 0; }
+  .day { min-width: 0; gap: 72px; }
   .day-row.head { display: none; }
-  .day-row { display: block; height: 260vh; height: 260svh; }
+  .day-row { display: block; position: relative; }
   .day-row + .day-row { padding-top: 0; border-top: 0; }
   .day-pin {
-    position: sticky; top: 0; height: 100vh; height: 100svh;
-    display: grid; grid-template-columns: minmax(0, 1fr); align-content: center; gap: 22px;
+    position: sticky; top: var(--pin-top);
+    display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px;
     padding-top: env(safe-area-inset-top, 0px);
+    background: var(--paper);
   }
+  .day-track { display: block; height: calc(var(--step) * 4); }
+  .day-snap { display: block; position: absolute; left: 0; width: 1px; height: 1px; scroll-snap-align: start; scroll-margin-top: var(--pin-top); pointer-events: none; }
   .row-head { grid-row: 1; }
   .row-head strong { font-size: 24px; }
   .moment {
     grid-row: 2; grid-column: 1; width: 100%; max-width: 400px;
-    opacity: 0; transform: translateY(14px); pointer-events: none;
-    transition: opacity .35s ease, transform .35s ease;
+    opacity: 0; pointer-events: none;
+    transition: opacity .25s ease;
   }
-  .moment.is-active { opacity: 1; transform: none; pointer-events: auto; }
+  .moment.is-active { opacity: 1; pointer-events: auto; }
   .moment figcaption { display: flex; align-items: baseline; gap: 10px; font-size: 15px; font-weight: 500; margin-bottom: 10px; min-height: 2.6em; }
   .moment figcaption b { font-family: var(--mono); font-feature-settings: "ss04"; font-weight: 500; font-size: 16px; color: var(--accent); }
   .day-steps { grid-row: 3; display: flex; align-items: center; gap: 8px; }
@@ -368,5 +375,5 @@ p { margin: 0; }
   .day-steps span.on { width: 22px; border-radius: 4px; background: var(--accent); }
 }
 @media (max-width: 760px) and (prefers-reduced-motion: reduce) {
-  .moment, .day-steps span { transition: none; transform: none; }
+  .moment, .day-steps span { transition: none; }
 }

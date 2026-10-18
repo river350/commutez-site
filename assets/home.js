@@ -73,8 +73,10 @@
   });
 
   // ---- A normal day: pinned surfaces on phones ---------------------------
-  // Each surface block is taller than the screen and its content is sticky.
-  // How far you have scrolled through the block picks which moment shows.
+  // Each surface's content is sticky; a track of fixed-length steps after it
+  // gives the scroll room. How far the block has been pinned, in px, picks
+  // the moment — never the viewport height, which Safari's toolbar changes
+  // mid-scroll. A snap point per step lets the page settle on each time.
   var phone = window.matchMedia('(max-width: 760px)');
   var rows = Array.prototype.slice.call(document.querySelectorAll('.day-row:not(.head)')).map(function (row) {
     var pin = row.querySelector('.day-pin');
@@ -82,10 +84,23 @@
     var dots = document.createElement('div');
     dots.className = 'day-steps';
     dots.setAttribute('aria-hidden', 'true');
-    moments.forEach(function () { dots.appendChild(document.createElement('span')); });
+    moments.forEach(function (m, i) {
+      dots.appendChild(document.createElement('span'));
+      var snap = document.createElement('span');
+      snap.className = 'day-snap';
+      snap.setAttribute('aria-hidden', 'true');
+      snap.style.top = 'calc(var(--step) * ' + i + ')';
+      row.appendChild(snap);
+    });
     if (pin) pin.appendChild(dots);
-    return { row: row, moments: moments, dots: Array.prototype.slice.call(dots.children), current: -1 };
+    var track = document.createElement('div');
+    track.className = 'day-track';
+    track.setAttribute('aria-hidden', 'true');
+    row.appendChild(track);
+    return { row: row, pin: pin, moments: moments, dots: Array.prototype.slice.call(dots.children), current: -1 };
   });
+
+  function px(el, prop) { return parseFloat(getComputedStyle(el).getPropertyValue(prop)) || 0; }
 
   function show(r, index) {
     if (r.current === index) return;
@@ -97,19 +112,27 @@
   var ticking = false;
   function update() {
     ticking = false;
-    var vh = window.innerHeight;
+    if (!phone.matches) { rows.forEach(function (r) { show(r, 0); }); return; }
+    var root = document.documentElement;
+    var pinTop = px(root, '--pin-top');
+    var step = px(root, '--step') || 340;
     rows.forEach(function (r) {
-      if (!phone.matches) { show(r, 0); return; }
-      var rect = r.row.getBoundingClientRect();
-      var travel = rect.height - vh;
-      var progress = travel > 0 ? Math.min(1, Math.max(0, -rect.top / travel)) : 0;
-      show(r, Math.min(r.moments.length - 1, Math.floor(progress * r.moments.length)));
+      // px the block has travelled since it pinned; +step/2 so a snap that
+      // lands a pixel short still counts as that step
+      var pinned = pinTop - r.row.getBoundingClientRect().top + step / 2;
+      var index = Math.floor(Math.max(0, pinned) / step);
+      show(r, Math.min(r.moments.length - 1, index));
     });
   }
+  var settle = 0;
   function onScroll() {
     if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+    // and once more when scrolling (or a snap) has come to rest
+    clearTimeout(settle);
+    settle = setTimeout(update, 120);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('scrollend', update);
   window.addEventListener('resize', onScroll);
   update();
 })();
