@@ -1,7 +1,22 @@
-// Commutez front page: the demo countdown and the surface tabs.
+// Commutez front page: the demo countdown, the surface tabs and, on phones,
+// the pinned stages that step in place as you scroll.
 // No dependencies, no network, nothing stored.
 (function () {
   'use strict';
+
+  var phone = window.matchMedia('(max-width: 760px)');
+  var norsk = /^(nb|no|nn)/.test(document.documentElement.lang);
+  var TEXT = norsk
+    ? {
+        urgent: 'Blått betyr gå nå',
+        legend: function (m, n) { return m + ' = minutter til du må gå · (' + n + ') = den neste'; },
+        short: function (m) { return m + ' min til du må gå'; }
+      }
+    : {
+        urgent: 'Blue means go now',
+        legend: function (m, n) { return m + ' = minutes until you leave · (' + n + ') = the next one'; },
+        short: function (m) { return m + ' min until you leave'; }
+      };
 
   // ---- Demo countdown -------------------------------------------------
   // Runs 12 → 0 minutes at 20× speed (one minute every 3 s), then starts
@@ -12,10 +27,6 @@
   var URGENT_MIN = 2;
   var secs = START;
   var body = document.body;
-  var norsk = /^(nb|no|nn)/.test(document.documentElement.lang);
-  var TEXT = norsk
-    ? { urgent: 'Blått betyr gå nå', legend: function (m, n) { return m + ' = minutter til du må gå · (' + n + ') = den neste'; } }
-    : { urgent: 'Blue means go now', legend: function (m, n) { return m + ' = minutes until you leave · (' + n + ') = the next one'; } };
 
   function pad(n) { return (n < 10 ? '0' : '') + n; }
 
@@ -31,7 +42,8 @@
     setAll('[data-next]', String(minutes + 7));
     setAll('[data-run]', String(Math.max(0, minutes - 1)));
     setAll('[data-mmss]', Math.floor(secs / 60) + ':' + pad(secs % 60));
-    setAll('[data-legend]', urgent ? TEXT.urgent : TEXT.legend(minutes, minutes + 7));
+    setAll('[data-legend]', urgent ? TEXT.urgent
+      : (phone.matches ? TEXT.short(minutes) : TEXT.legend(minutes, minutes + 7)));
     body.classList.toggle('is-urgent', urgent);
   }
 
@@ -58,10 +70,59 @@
       if (panel) panel.hidden = !on;
     });
     if (focus) tab.focus();
+    // keep the active tab in view in the narrow tab row
+    if (phone.matches && tab.scrollIntoView) tab.scrollIntoView({ block: 'nearest', inline: 'nearest' });
   }
 
+  // ---- Pinned stages (phones) -----------------------------------------
+  // A stage is a tall container with a sticky child. We add one snap point
+  // per step (one screen apart) and a track that gives the scroll room.
+  // How far the container has scrolled past the top bar, in px, picks the
+  // step. Lengths are measured from the snap points, so they always match
+  // the CSS (one screen = 100svh minus the bar).
+  function makeStage(container, count, onStep) {
+    if (!container || count < 1) return null;
+    var snaps = [];
+    for (var k = 0; k < count; k++) {
+      var snap = document.createElement('span');
+      snap.className = 'snap-pt';
+      snap.setAttribute('aria-hidden', 'true');
+      snap.style.top = 'calc(var(--screen) * ' + k + ')';
+      container.appendChild(snap);
+      snaps.push(snap);
+    }
+    var track = document.createElement('div');
+    track.className = 'step-track';
+    track.setAttribute('aria-hidden', 'true');
+    track.style.height = 'calc(var(--screen) * ' + (count - 1) + ')';
+    container.appendChild(track);
+    return { container: container, snaps: snaps, count: count, onStep: onStep, current: -1 };
+  }
+
+  function stepOf(stage) {
+    var bar = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bar')) || 0;
+    var step = stage.snaps.length > 1 ? stage.snaps[1].offsetTop - stage.snaps[0].offsetTop : window.innerHeight;
+    if (step <= 0) return 0;
+    // +step/2 so a snap that lands a pixel short still counts as that step
+    var travelled = bar - stage.container.getBoundingClientRect().top + step / 2;
+    return Math.min(stage.count - 1, Math.max(0, Math.floor(travelled / step)));
+  }
+
+  function scrollToStep(stage, k) {
+    var snap = stage.snaps[k];
+    if (snap && snap.scrollIntoView) snap.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  // "One number": one step per surface tab.
+  var howStage = makeStage(document.getElementById('how'), tabs.length, function (i) {
+    if (tabs[i]) select(tabs[i], false);
+  });
+
   tabs.forEach(function (tab, i) {
-    tab.addEventListener('click', function () { select(tab, false); });
+    tab.addEventListener('click', function () {
+      if (phone.matches && howStage) scrollToStep(howStage, i);
+      else select(tab, false);
+    });
     tab.addEventListener('keydown', function (e) {
       var next = null;
       if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
@@ -72,16 +133,8 @@
     });
   });
 
-  // ---- A normal day: one pinned stage on phones --------------------------
-  // The day section pins as a whole; a track of fixed-length steps after it
-  // gives the scroll room: 4 steps per surface, surfaces in turn. How far it
-  // has been pinned, in px, picks surface and moment — never the viewport
-  // height, which Safari's toolbar changes mid-scroll. A snap point per step
-  // lets the page settle on each time.
-  var phone = window.matchMedia('(max-width: 760px)');
-  var stage = document.querySelector('.day');
-  var scroller = document.querySelector('.day-scroll');
-  var rows = Array.prototype.slice.call(document.querySelectorAll('.day-row:not(.head)')).map(function (row) {
+  // "A normal day": three surfaces × four moments, surfaces in turn.
+  var dayRows = Array.prototype.slice.call(document.querySelectorAll('.day-row:not(.head)')).map(function (row) {
     var pin = row.querySelector('.day-pin');
     var moments = Array.prototype.slice.call(row.querySelectorAll('.moment'));
     var dots = document.createElement('div');
@@ -89,57 +142,42 @@
     dots.setAttribute('aria-hidden', 'true');
     moments.forEach(function () { dots.appendChild(document.createElement('span')); });
     if (pin) pin.appendChild(dots);
-    return { row: row, moments: moments, dots: Array.prototype.slice.call(dots.children), current: -1 };
+    return { row: row, moments: moments, dots: Array.prototype.slice.call(dots.children) };
   });
-  var totalSteps = rows.reduce(function (n, r) { return n + r.moments.length; }, 0);
-  if (scroller && stage) {
-    for (var s = 0; s < totalSteps; s++) {
-      var snap = document.createElement('span');
-      snap.className = 'day-snap';
-      snap.setAttribute('aria-hidden', 'true');
-      snap.style.top = 'calc(var(--step) * ' + s + ')';
-      scroller.appendChild(snap);
-    }
-    var track = document.createElement('div');
-    track.className = 'day-track';
-    track.setAttribute('aria-hidden', 'true');
-    scroller.appendChild(track);
-  }
 
-  function px(el, prop) { return parseFloat(getComputedStyle(el).getPropertyValue(prop)) || 0; }
-
-  function px(el, prop) { return parseFloat(getComputedStyle(el).getPropertyValue(prop)) || 0; }
-
-  function show(r, index) {
-    if (r.current === index) return;
-    r.current = index;
-    r.moments.forEach(function (m, i) { m.classList.toggle('is-active', i === index); });
-    r.dots.forEach(function (d, i) { d.classList.toggle('on', i === index); });
-  }
-
-  var ticking = false;
-  function update() {
-    ticking = false;
-    if (!phone.matches || !scroller) {
-      rows.forEach(function (r) { show(r, 0); r.row.classList.remove('is-current'); });
-      return;
-    }
-    var root = document.documentElement;
-    var pinTop = px(root, '--pin-top');
-    var step = px(root, '--step') || 340;
-    // px the stage has travelled since it pinned; +step/2 so a snap that
-    // lands a pixel short still counts as that step
-    var pinned = pinTop - scroller.getBoundingClientRect().top + step / 2;
-    var index = Math.min(totalSteps - 1, Math.floor(Math.max(0, pinned) / step));
+  function showDay(index) {
     var before = 0;
-    rows.forEach(function (r) {
+    dayRows.forEach(function (r) {
       var n = r.moments.length;
       var mine = index >= before && index < before + n;
+      var m = mine ? index - before : (index < before ? 0 : n - 1);
       r.row.classList.toggle('is-current', mine);
-      show(r, mine ? index - before : (index < before ? 0 : n - 1));
+      r.moments.forEach(function (el, i) { el.classList.toggle('is-active', i === m); });
+      r.dots.forEach(function (el, i) { el.classList.toggle('on', i === m); });
       before += n;
     });
   }
+
+  var daySteps = dayRows.reduce(function (n, r) { return n + r.moments.length; }, 0);
+  var dayStage = makeStage(document.querySelector('.day-scroll'), daySteps, showDay);
+
+  var stages = [howStage, dayStage].filter(Boolean);
+
+  function update() {
+    ticking = false;
+    if (!phone.matches) {
+      // desktop: the tabs work by click; the day grid shows everything
+      dayRows.forEach(function (r) { r.row.classList.remove('is-current'); });
+      stages.forEach(function (s) { s.current = -1; });
+      return;
+    }
+    stages.forEach(function (s) {
+      var i = stepOf(s);
+      if (i !== s.current) { s.current = i; s.onStep(i); }
+    });
+  }
+
+  var ticking = false;
   var settle = 0;
   function onScroll() {
     if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
@@ -149,6 +187,7 @@
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('scrollend', update);
-  window.addEventListener('resize', onScroll);
+  window.addEventListener('resize', function () { render(); onScroll(); });
+  showDay(0);
   update();
 })();
