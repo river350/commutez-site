@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Commutez — vit når du skal gå</title>
+  <meta name="description" content="Commutez teller ned til minuttet du må gå ut døra, ikke til bussen går. Widgeter, Live Activity og Apple Watch, stort sett uten å åpne appen.">
+  <link rel="canonical" href="https://commutez.app/no/">
+  <link rel="alternate" hreflang="en" href="https://commutez.app/">
+  <link rel="alternate" hreflang="nb" href="https://commutez.app/no/">
+  <link rel="alternate" hreflang="x-default" href="https://commutez.app/">
+  <link rel="icon" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <meta property="og:title" content="Commutez">
+  <meta property="og:description" content="Vit når du skal gå. En dør-til-dør-nedtelling for pendlere, på iPhone og Apple Watch.">
+  <meta property="og:image" content="https://commutez.app/assets/og-image.png">
+  <meta property="og:url" content="https://commutez.app/no/">
+  <meta property="og:locale" content="nb_NO">
+  <meta name="theme-color" content="#f5f3ef">
+  <link rel="preload" href="/assets/fonts/IBMPlexMono-Light.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/assets/fonts/SchibstedGrotesk.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="/assets/home.css?v=2">
+</head>
+<body>
+
+<header class="top">
+  <div class="row">
+    <a class="brand" href="/no/"><img src="/assets/icon-256.png" alt="">Commutez</a>
+    <nav class="nav" aria-label="Hovedmeny">
+      <a class="hide-sm" href="#how">Slik virker det</a>
+      <a class="hide-sm" href="#day">En vanlig dag</a>
+      <a href="#privacy">Personvern</a>
+      <a href="/support/">Support</a>
+      <span class="lang" aria-label="Språk"><a href="/no/" aria-current="page" lang="nb">NO</a><span aria-hidden="true">/</span><a href="/" lang="en" hreflang="en">EN</a></span>
+      <a class="btn small" href="#get">Bli med i betaen</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="inner">
+    <div class="hero-copy">
+      <p class="eyebrow">For pendlere · iPhone · Apple Watch</p>
+      <h1>Vit når du skal gå.</h1>
+      <p class="lede">Commutez teller ned til minuttet du må gå ut døra, ikke til minuttet bussen går. Gangtid, bytter og forsinkelser er allerede regnet inn i tallet.</p>
+      <div class="cta-row">
+        <a class="btn" href="#get">Bli med i betaen</a>
+        <a class="link" href="#how">Se hvordan det virker</a>
+      </div>
+      <p class="note">Gratis i betaperioden · Kommer snart i App Store</p>
+    </div>
+    <div class="hero-tile">
+      <div class="tile" role="img" aria-label="Commutez-widget som teller ned minuttene til du må gå">
+        <span class="box">T</span>
+        <span class="num" data-min>12</span>
+        <span class="next">(<span data-next>19</span>)</span>
+      </div>
+      <p class="legend" data-legend>12 = minutter til du må gå · (19) = den neste</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ETT TALL ============ -->
+<section class="band dark" id="how">
+  <div class="inner">
+    <div class="intro">
+      <p class="eyebrow">Ett tall</p>
+      <h2 class="h2">Samme nedtelling, uansett hvor du ser.</h2>
+      <p class="lede">Én reise som teller ned på fem steder samtidig. Trykk deg gjennom dem.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Velg visning">
+      <button role="tab" id="tab-app" aria-controls="p-app" aria-selected="true">Appen</button>
+      <button role="tab" id="tab-home" aria-controls="p-home" aria-selected="false" tabindex="-1">Hjemskjerm</button>
+      <button role="tab" id="tab-lock" aria-controls="p-lock" aria-selected="false" tabindex="-1">Låseskjerm</button>
+      <button role="tab" id="tab-island" aria-controls="p-island" aria-selected="false" tabindex="-1">Dynamic Island</button>
+      <button role="tab" id="tab-watch" aria-controls="p-watch" aria-selected="false" tabindex="-1">Apple Watch</button>
+    </div>
+
+    <!-- Appen -->
+    <div class="surface panel" id="p-app" role="tabpanel" aria-labelledby="tab-app">
+      <div class="surface-copy">
+        <p class="step">01 / 05</p>
+        <h3>Appen</h3>
+        <p>Åpne den når du vil se hele bildet: ruten tegnet som en linje, reisestripen, alle avganger og været for turen. De fleste dager trenger du ikke.</p>
+      </div>
+      <div class="stage">
+        <div class="phone"><div class="screen">
+          <img src="/assets/screens/app-calm.jpg" width="660" height="1435" alt="Commutez-appen: 10 min til du må gå, ruten fra Grønland til Majorstuen, gå 20:35, linje 2 kl. 20:47, på jobb 20:56">
+          <img class="urgent-shot" src="/assets/screens/app-urgent.jpg" width="660" height="1435" alt="" aria-hidden="true">
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Hjemskjerm -->
+    <div class="surface panel" id="p-home" role="tabpanel" aria-labelledby="tab-home" hidden>
+      <div class="surface-copy">
+        <p class="step">02 / 05</p>
+        <h3>Widgeter på hjemskjermen</h3>
+        <p>Tre størrelser. Den lille viser bare tallet. Den brede og den store har også reisestripen: når du må gå, når avgangen går og når du er fremme. Med to minutter igjen blir de blå.</p>
+      </div>
+      <div class="stage">
+        <div class="shot-stack">
+          <div class="shot-card">
+            <span class="label">HJEMSKJERM · BRED WIDGET</span>
+            <div class="img-wrap widget">
+              <img src="/assets/screens/widget-calm.jpg" width="1044" height="490" alt="Bred widget: 4 min, til Majorstuen med linje 2 kl. 20:47, gå 20:35, på jobb 20:56">
+              <img class="urgent-shot" src="/assets/screens/widget-urgent.jpg" width="1044" height="490" alt="" aria-hidden="true">
+            </div>
+          </div>
+          <p class="caption-dark">Ekte skjermbilder fra appen (engelsk versjon), med sanntidsdata fra Entur.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Låseskjerm -->
+    <div class="surface panel" id="p-lock" role="tabpanel" aria-labelledby="tab-lock" hidden>
+      <div class="surface-copy">
+        <p class="step">03 / 05</p>
+        <h3>Låseskjerm og Live Activity</h3>
+        <p>Når det nærmer seg tid for å gå, dukker nedtellingen opp på låseskjermen av seg selv og teller sekund for sekund. Ingen alarm å stille inn.</p>
+      </div>
+      <div class="stage">
+        <div class="shot-stack">
+          <div class="shot-card lock">
+            <span class="label">LÅSESKJERM · LIVE ACTIVITY</span>
+            <div class="img-wrap la">
+              <img src="/assets/screens/live-activity.jpg" width="1116" height="304" alt="Live Activity på låseskjermen: dra om 5:29, til jobb, linje 2 til Majorstuen, går 20:47">
+            </div>
+          </div>
+          <p class="caption-dark">Ekte skjermbilde fra appen (engelsk versjon), med sanntidsdata fra Entur.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dynamic Island -->
+    <div class="surface panel" id="p-island" role="tabpanel" aria-labelledby="tab-island" hidden>
+      <div class="surface-copy">
+        <p class="step">04 / 05</p>
+        <h3>Dynamic Island</h3>
+        <p>Tid til å gå til venstre, linjen din til høyre. Når du er om bord, bytter de side, og den teller ned til du er fremme. Trykk og hold for full visning.</p>
+      </div>
+      <div class="stage">
+        <div class="island-demo" role="img" aria-label="Dynamic Island med nedtellingen, utvidet og kompakt"><div class="screen">
+          <div class="island-x">
+            <div class="row">
+              <div><span class="cap">Dra om</span><span class="big" data-mmss>12:00</span></div>
+              <div style="text-align:right"><span class="cap">Til jobb</span><span class="ride">2 → Majorstuen</span></div>
+            </div>
+            <span class="line">Går 20:47 · 9 min gange · fremme 20:56</span>
+          </div>
+          <div class="pills">
+            <span class="cap">Kompakt</span>
+            <span class="pill"><span data-mmss>12:00</span><span class="badge">2</span></span>
+            <span class="cap" style="margin-top:10px">Om bord</span>
+            <span class="pill flip"><span class="badge">2</span><span>9:00</span></span>
+          </div>
+          <div class="ghost-lines" aria-hidden="true"><span style="width:70%"></span><span style="width:90%"></span><span style="width:55%"></span></div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Apple Watch -->
+    <div class="surface panel" id="p-watch" role="tabpanel" aria-labelledby="tab-watch" hidden>
+      <div class="surface-copy">
+        <p class="step">05 / 05</p>
+        <h3>Apple Watch</h3>
+        <p>Egen klokkeapp, Smart Stack-widgeter og komplikasjoner. Klokka planlegger reisene selv, så den virker uten telefonen.</p>
+      </div>
+      <div class="stage">
+        <div class="watch" role="img" aria-label="Apple Watch som viser minutter til du må gå">
+          <div class="case"><div class="face">
+            <span class="cap">Dra om</span>
+            <span class="big" data-min>12</span>
+            <span style="font-size:13px;font-weight:500">2 → Majorstuen</span>
+            <span class="mono" style="font-size:10px;color:var(--muted-dark)">20:47 · 9 MIN GANGE</span>
+          </div></div>
+          <span class="crown"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EN VANLIG DAG ============ -->
+<section class="band" id="day">
+  <div class="inner">
+    <div class="intro">
+      <p class="eyebrow">En vanlig tirsdag</p>
+      <h2 class="h2">Appen du aldri trenger å åpne.</h2>
+      <p class="lede">Commutez er laget for å kikkes på. Under ser du en helt vanlig pendlerdag. Alt skjer i Dynamic Island, på låseskjermen og i widgetene, uten at du åpner appen én eneste gang. Du velger selv hva du vil ha, hver for seg for turen til jobb og turen hjem.</p>
+    </div>
+
+    <!-- Desktop: rutenett med tidspunkter bortover og visninger nedover.
+         Mobil: én blokk per visning, med de fire øyeblikkene under hverandre. -->
+    <div class="day-scroll">
+      <div class="day">
+        <div class="day-row head">
+          <div></div>
+          <div class="col-head"><span class="t">06:55</span><strong>Vinduet åpner</strong><span>En halvtime før du må gå, dukker nedtellingen opp av seg selv.</span></div>
+          <div class="col-head"><span class="t">07:23</span><strong>Blått betyr gå</strong><span>To minutter igjen. Sko på, ut døra.</span></div>
+          <div class="col-head"><span class="t">07:34</span><strong>Om bord</strong><span>Den teller ned til du er fremme og sier hvor du skal av.</span></div>
+          <div class="col-head"><span class="t">16:07</span><strong>Hjem i tide</strong><span>Toget er 3 minutter forsinket, så påminnelsen kom 3 minutter senere.</span></div>
+        </div>
+
+        <div class="day-row">
+          <div class="row-head"><span class="cap">Dynamic Island</span><strong>Øverst i alle apper</strong><span>Trykk og hold for full visning.</span></div>
+          <figure class="moment"><figcaption><b>06:55</b> Vinduet åpner</figcaption>
+            <div class="cell isl"><span class="pill"><span>30:00</span><span class="badge">4</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
+          <figure class="moment"><figcaption><b>07:23</b> Blått betyr gå</figcaption>
+            <div class="cell isl"><span class="pill"><span>2:00</span><span class="badge">4</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
+          <figure class="moment"><figcaption><b>07:34</b> Om bord: sidene bytter plass</figcaption>
+            <div class="cell isl"><span class="pill flip"><span class="badge">4</span><span>24:00</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
+          <figure class="moment"><figcaption><b>16:07</b> Hjem i tide</figcaption>
+            <div class="cell isl"><span class="pill"><span>0:00</span><span class="badge">4</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
+        </div>
+
+        <div class="day-row">
+          <div class="row-head"><span class="cap">Låseskjerm</span><strong>Den dukker opp av seg selv</strong><span>Ingen alarm å stille inn. Den kommer når det gjelder og forsvinner når du går.</span></div>
+          <figure class="moment"><figcaption><b>06:55</b> En halvtime før du må gå</figcaption>
+            <div class="cell lock"><span class="clock">6:55</span><span class="grow"></span>
+              <div class="la-mini"><div><span class="cap">Dra om</span><span class="big">30:00</span></div><div class="right"><span class="cap">Til jobb</span><b>4 → Vestli</b></div></div></div></figure>
+          <figure class="moment"><figcaption><b>07:23</b> To minutter: den blir blå</figcaption>
+            <div class="cell lock"><span class="clock">7:23</span><span class="grow"></span>
+              <div class="la-mini"><div><span class="cap">Dra om</span><span class="big hot">2:00</span></div><div class="right"><span class="cap">Til jobb</span><b>4 → Vestli</b></div></div></div></figure>
+          <figure class="moment"><figcaption><b>07:34</b> Om bord: teller ned til du er fremme</figcaption>
+            <div class="cell lock"><span class="clock">7:34</span><span class="grow"></span>
+              <div class="la-mini"><div><span class="cap">Fremme om</span><span class="big">24:00</span></div><div class="right"><span class="cap">Av på Majorstuen</span><b>4 → Vestli</b></div></div></div></figure>
+          <figure class="moment"><figcaption><b>16:07</b> Toget er sent, så påminnelsen ventet</figcaption>
+            <div class="cell lock"><span class="clock">16:07</span><span class="grow"></span>
+              <div class="notif"><img src="/assets/icon-256.png" alt=""><div><strong>Dra nå</strong>4 → Bergkrystallen kl. 16:15 <span class="late">+3</span></div></div>
+              <div class="la-mini"><div><span class="cap">Dra om</span><span class="big hot">0:00</span></div><div class="right"><span class="cap">Til hjem</span><b>4 → Bergkrystallen</b></div></div></div></figure>
+        </div>
+
+        <div class="day-row">
+          <div class="row-head"><span class="cap">Hjemskjerm</span><strong>Alltid der, bak appene dine</strong><span>Lås opp telefonen, og svaret står der allerede.</span></div>
+          <figure class="moment"><figcaption><b>06:55</b> 30 minutter igjen</figcaption>
+            <div class="cell home">
+              <div class="w sq"><span class="box">T</span><span class="n">30</span><span class="nx">(37)</span></div>
+              <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+              <div class="w wide"><div class="top-row"><span class="n">30 <small>min</small></span><span class="meta"><span class="cap">Til jobb</span><span>4 → Vestli · 07:31</span></span></div>
+                <div class="strip"><b>07:25</b><i></i><span>07:31</span><i></i><span>07:58</span></div></div>
+            </div></figure>
+          <figure class="moment"><figcaption><b>07:23</b> Blått betyr gå</figcaption>
+            <div class="cell home">
+              <div class="w sq hot"><span class="box">T</span><span class="n">2</span><span class="nx">(9)</span></div>
+              <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+              <div class="w wide hot"><div class="top-row"><span class="n">2 <small>min</small></span><span class="meta"><span class="cap">Til jobb</span><span>4 → Vestli · 07:31</span></span></div>
+                <div class="strip"><b>07:25</b><i></i><span>07:31</span><i></i><span>07:58</span></div></div>
+            </div></figure>
+          <figure class="moment"><figcaption><b>07:34</b> Om bord, med stoppet du skal av på</figcaption>
+            <div class="cell home">
+              <div class="w board"><span class="ph">OM BORD<br>FREMME 07:58</span><span class="n">24 <small>min</small></span><span class="bd">(4) AV OM 21 MIN</span><span class="stop">MAJORSTUEN</span></div>
+              <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+              <div class="w wide"><div class="top-row"><span class="n">24 <small>min</small></span><span class="meta"><span class="cap ph">Om bord · jobb</span><span>(4) AV OM 21 MIN · MAJORSTUEN</span></span></div>
+                <div class="strip"><span>07:31</span><i class="fill"></i><span>07:58</span></div></div>
+            </div></figure>
+          <figure class="moment"><figcaption><b>16:07</b> På tide å dra hjem</figcaption>
+            <div class="cell home">
+              <div class="w sq hot"><span class="box">T</span><span class="n">0</span><span class="nx">(8)</span></div>
+              <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+              <div class="w wide hot"><div class="top-row"><span class="n">0 <small>min</small></span><span class="meta"><span class="cap">Til hjem</span><span>4 → Bergkrystallen · 16:15 +3</span></span></div>
+                <div class="strip"><b>16:07</b><i></i><span>16:15</span><i></i><span>16:52</span></div></div>
+            </div></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="choices">
+      <div class="lead"><span class="eyebrow">I appen: Innstillinger › Til jobb</span><strong>Du velger hva som skal vises, hver for seg for turen til jobb og turen hjem.</strong></div>
+      <span class="toggle"><span class="switch" role="img" aria-label="på"></span>Live Activity</span>
+      <span class="toggle"><span class="switch" role="img" aria-label="på"></span>Dra nå-varsel</span>
+      <span class="toggle off"><span class="switch" role="img" aria-label="av"></span>Nedtelling på ikonet</span>
+      <span class="toggle"><span class="switch" role="img" aria-label="på"></span>Trykk på håndleddet</span>
+      <span class="toggle off"><span class="switch" role="img" aria-label="av"></span>Stopp-vibrasjon</span>
+    </div>
+
+    <p class="closing">Åpne appen når du vil ha detaljene: alle avganger, bytter, ruten tegnet som en linje og regn time for time.</p>
+  </div>
+</section>
+
+<!-- ============ UKA DI ============ -->
+<section class="band dark">
+  <div class="inner">
+    <div class="intro">
+      <p class="eyebrow">Timeplanen din</p>
+      <h2 class="h2">Den kjenner uka di.</h2>
+      <p class="lede">Fortell én gang når du begynner og slutter. Nedtellingen sikter på reisen som får deg fram i tide.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="weekgrid" aria-label="Eksempel på timeplan: mandag til torsdag 08 til 16, fredag 08 til 14, fri i helgen">
+          <div><span>MAN</span><span>08<br>16</span></div>
+          <div><span>TIR</span><span>08<br>16</span></div>
+          <div><span>ONS</span><span>08<br>16</span></div>
+          <div><span>TOR</span><span>08<br>16</span></div>
+          <div><span>FRE</span><span>08<br>14</span></div>
+          <div class="off"><span>LØR</span><span>–<br>–</span></div>
+          <div class="off"><span>SØN</span><span>–<br>–</span></div>
+        </div>
+        <p class="meta">DENNE UKA ER UKE 1 AV 2</p>
+        <h3>Per ukedag, også med turnus</h3>
+        <p>Deltid, skoletider eller en turnus som går over én til tre uker.</p>
+      </div>
+      <div class="card">
+        <div class="flex"><span class="n">+60</span><span class="u">MIN FLEKS</span></div>
+        <p class="meta">START 08:00 · FORTSATT GREIT TIL 09:00</p>
+        <h3>Fleksitid innebygd</h3>
+        <p>Sent ute? Den fortsetter å foreslå reiser som får deg fram innenfor fleksitiden, i stedet for å gi opp etter den siste som rekker presis.</p>
+      </div>
+      <div class="card">
+        <div class="dir"><span>HJEM</span><span class="on">JOBB</span></div>
+        <p class="meta">BYTTET 16:02 · GIKK FRA KONTORET</p>
+        <h3>Hjem og jobb, riktig vei</h3>
+        <p>Den følger tiden på døgnet. Slår du på posisjon, bytter den også i det du går ut av bygget.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DETALJER ============ -->
+<section class="band">
+  <div class="inner">
+    <div class="intro">
+      <p class="eyebrow">Detaljer</p>
+      <h2 class="h2">Småting du legger merke til andre dagen.</h2>
+    </div>
+    <div class="details">
+      <div class="detail">
+        <div class="rows"><div><span>07:31 4 → Vestli</span><span><span data-min>12</span> MIN</span></div><div class="grey"><span>07:27 3 → Kolsås</span><span><span data-run>11</span> MIN</span></div></div>
+        <h3>Vist hvis du er rask</h3>
+        <p>Avganger du bare rekker hvis du løper, vises i grått. Nedtellingen regner aldri med dem.</p>
+      </div>
+      <div class="detail">
+        <div class="rows"><div><span>07:45 5 → Vestli</span><span style="color:var(--amber)">+3 MIN FORSINKET</span></div><div class="dim"><span>SANNTID</span><span>OPPDATERT 07:13</span></div></div>
+        <h3>Forsinkelser er allerede med i tallet</h3>
+        <p>Sanntidsdata oppdateres hvert 30. sekund når avgangen nærmer seg. Mister du dekning, står det når den sist ble oppdatert.</p>
+      </div>
+      <div class="detail">
+        <div class="rows"><div class="stripe"><span>10–13° · REGN · MET.NO</span></div></div>
+        <h3>En værstripe</h3>
+        <p>En strek i kanten av widgeten når Meteorologisk institutt varsler regn den neste timen.</p>
+      </div>
+      <div class="detail">
+        <div class="rows"><div><span>VÆR</span><span>11° · SKYET</span></div><div><span>NESTE REGN</span><span>14:20</span></div><div class="dim"><span>REGN OM</span><span>3 T 10 MIN</span></div></div>
+        <h3>Nyttig mellom reisene</h3>
+        <p>Når det ikke er noen reise å telle ned til, viser hver widget det du velger: neste avgang, været eller når regnet kommer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PERSONVERN ============ -->
+<section class="band dark" id="privacy">
+  <div class="inner">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Personvern</p>
+        <h2 class="h2">Ingen konto. Ingen servere.</h2>
+        <p class="lede">Alt kjører på telefonen og henter data direkte fra åpne tjenester for kollektivtrafikk og vær. Det finnes ingen Commutez-server i mellom, og vi samler ikke inn eller lagrer noe om deg.</p>
+        <p class="lede">Du velger hvor mye du deler. Start med bare en stasjon i nærheten og din egen gangtid. Slår du på posisjon, blir den mer presis: den planlegger fra der du står og bytter mellom hjem og jobb av seg selv.</p>
+        <p><a class="text-link" href="/privacy/" hreflang="en">Les personvernerklæringen (på engelsk)</a></p>
+      </div>
+      <div class="facts">
+        <div><span>Posisjon</span><span>Av som standard</span></div>
+        <div><span>Konto</span><span>Ingen</span></div>
+        <div><span>Servere</span><span>Ingen · alt på telefonen</span></div>
+        <div><span>Del mer</span><span>Mer presis</span></div>
+        <div><span>Synk</span><span>Din egen iCloud</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LAND ============ -->
+<section class="band" id="countries">
+  <div class="inner">
+    <div class="intro">
+      <p class="eyebrow">Hvor den virker</p>
+      <h2 class="h2">Dør til dør i fire land og London.</h2>
+      <p class="lede">Her kan Commutez planlegge reiser med buss, tog, trikk og T-bane. Bil, sykkel og gange virker i hele Europa.</p>
+    </div>
+    <div class="countries">
+      <div><span class="code">NO</span><strong>Norge</strong><span>All kollektivtrafikk, med sanntid</span><span class="src">Data fra Entur</span></div>
+      <div><span class="code">SE</span><strong>Sverige</strong><span>All kollektivtrafikk, dør til dør</span><span class="src">Data fra Trafiklab</span></div>
+      <div><span class="code">FI</span><strong>Finland</strong><span>All kollektivtrafikk, med sanntid</span><span class="src">Data fra Digitransit</span></div>
+      <div><span class="code">EE</span><strong>Estland</strong><span>All kollektivtrafikk, dør til dør</span><span class="src">Data fra Digitransit</span></div>
+      <div><span class="code">GB</span><strong>London</strong><span>T-bane, buss og tog, med sanntid</span><span class="src">Data fra TfL</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLI MED ============ -->
+<section class="get" id="get">
+  <div class="box">
+    <div class="row">
+      <div class="copy">
+        <h2>Prøv den før alle andre.</h2>
+        <p>Betaen går via Apples TestFlight-app. Installer TestFlight, trykk på lenken, og Commutez ligger på telefonen. Tilbakemeldingene dine går rett til utvikleren.</p>
+        <div class="actions">
+          <!-- BETA LINK: bytt denne span-en med
+               <a class="btn light" href="https://testflight.apple.com/join/XXXXXXXX">Bli med i betaen på TestFlight</a>
+               når den offentlige TestFlight-lenken finnes. -->
+          <span class="btn light" aria-disabled="true">Betalenken kommer snart</span>
+          <span class="soon">Vil du være med tidlig? <a href="mailto:support@commutez.app" style="color:var(--paper)">support@commutez.app</a></span>
+        </div>
+      </div>
+      <div class="count" aria-hidden="true"><span class="n" data-min>12</span><span class="u">MIN</span></div>
+    </div>
+    <div class="stages">
+      <div class="now"><span class="cap">Pilot · nå</span><strong>Pilotbrukere</strong><span>En liten gruppe som tester den på ekte, daglige reiser.</span></div>
+      <div><span class="cap">Åpen beta</span><strong>Åpen TestFlight-beta</strong><span>Alle med lenken kan bli med, opptil 10 000 testere.</span></div>
+      <div><span class="cap">App Store</span><strong>Lansering</strong><span>Commutez i App Store for alle.</span></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="row">
+    <a class="brand" href="/no/"><img src="/assets/icon-256.png" alt="">Commutez</a>
+    <p>Kollektivdata fra Entur (NLOD), Trafiklab, Digitransit (CC BY 4.0) og Powered by TfL Open Data. Vær fra Meteorologisk institutt (CC BY 4.0). Fonter: IBM Plex Mono og Schibsted Grotesk (SIL Open Font License).</p>
+    <nav aria-label="Bunnmeny">
+      <a href="/support/" hreflang="en">Support</a>
+      <a href="/privacy/" hreflang="en">Personvern</a>
+      <span>© 2026 Commutez</span>
+    </nav>
+  </div>
+</footer>
+
+<script src="/assets/home.js?v=2" defer></script>
+</body>
+</html>

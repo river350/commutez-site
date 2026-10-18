@@ -12,6 +12,10 @@
   var URGENT_MIN = 2;
   var secs = START;
   var body = document.body;
+  var norsk = /^(nb|no|nn)/.test(document.documentElement.lang);
+  var TEXT = norsk
+    ? { urgent: 'Blått betyr gå nå', legend: function (m, n) { return m + ' = minutter til du må gå · (' + n + ') = den neste'; } }
+    : { urgent: 'Blue means go now', legend: function (m, n) { return m + ' = minutes until you leave · (' + n + ') = the next one'; } };
 
   function pad(n) { return (n < 10 ? '0' : '') + n; }
 
@@ -27,9 +31,7 @@
     setAll('[data-next]', String(minutes + 7));
     setAll('[data-run]', String(Math.max(0, minutes - 1)));
     setAll('[data-mmss]', Math.floor(secs / 60) + ':' + pad(secs % 60));
-    setAll('[data-legend]', urgent
-      ? 'Blue means go now'
-      : minutes + ' = minutes until you leave · (' + (minutes + 7) + ') = the next one');
+    setAll('[data-legend]', urgent ? TEXT.urgent : TEXT.legend(minutes, minutes + 7));
     body.classList.toggle('is-urgent', urgent);
   }
 

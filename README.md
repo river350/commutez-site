@@ -6,6 +6,7 @@ Hostes gratis på GitHub Pages med eget domene og automatisk HTTPS.
 | Side | URL | Brukes i App Store Connect som |
 |---|---|---|
 | `index.html` | https://commutez.app/ | Marketing URL |
+| `no/index.html` | https://commutez.app/no/ | (norsk forside, samme oppsett og CSS/JS) |
 | `privacy/index.html` | https://commutez.app/privacy/ | Privacy Policy URL |
 | `support/index.html` | https://commutez.app/support/ | Support URL |
 
@@ -52,7 +53,7 @@ JPEG.
 
 ## Når betaen åpner
 
-Søk etter `BETA LINK` i `index.html` og bytt `<span class="btn light">Beta
+Søk etter `BETA LINK` i `index.html` og `no/index.html` og bytt `<span class="btn light">Beta
 link coming soon</span>` med lenken til den offentlige TestFlight-betaen. Flytt
 `now` i `.stages` fra «Pilot» til «Public beta».
 
