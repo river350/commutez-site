@@ -19,7 +19,7 @@
   <meta name="theme-color" content="#f5f3ef">
   <link rel="preload" href="/assets/fonts/IBMPlexMono-Light.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="/assets/fonts/SchibstedGrotesk.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="/assets/home.css?v=2">
+  <link rel="stylesheet" href="/assets/home.css?v=3">
 </head>
 <body>
 
@@ -207,64 +207,70 @@
         </div>
 
         <div class="day-row">
-          <div class="row-head"><span class="cap">Dynamic Island</span><strong>Øverst i alle apper</strong><span>Trykk og hold for full visning.</span></div>
-          <figure class="moment"><figcaption><b>06:55</b> Vinduet åpner</figcaption>
-            <div class="cell isl"><span class="pill"><span>30:00</span><span class="badge">4</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
-          <figure class="moment"><figcaption><b>07:23</b> Blått betyr gå</figcaption>
-            <div class="cell isl"><span class="pill"><span>2:00</span><span class="badge">4</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
-          <figure class="moment"><figcaption><b>07:34</b> Om bord: sidene bytter plass</figcaption>
-            <div class="cell isl"><span class="pill flip"><span class="badge">4</span><span>24:00</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
-          <figure class="moment"><figcaption><b>16:07</b> Hjem i tide</figcaption>
-            <div class="cell isl"><span class="pill"><span>0:00</span><span class="badge">4</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
+          <div class="day-pin">
+            <div class="row-head"><span class="cap">Dynamic Island</span><strong>Øverst i alle apper</strong><span>Trykk og hold for full visning.</span></div>
+            <figure class="moment is-active"><figcaption><b>06:55</b> Vinduet åpner</figcaption>
+              <div class="cell isl"><span class="pill"><span>30:00</span><span class="badge">4</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
+            <figure class="moment"><figcaption><b>07:23</b> Blått betyr gå</figcaption>
+              <div class="cell isl"><span class="pill"><span>2:00</span><span class="badge">4</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
+            <figure class="moment"><figcaption><b>07:34</b> Om bord: sidene bytter plass</figcaption>
+              <div class="cell isl"><span class="pill flip"><span class="badge">4</span><span>24:00</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
+            <figure class="moment"><figcaption><b>16:07</b> Hjem i tide</figcaption>
+              <div class="cell isl"><span class="pill"><span>0:00</span><span class="badge">4</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
+          </div>
         </div>
 
         <div class="day-row">
-          <div class="row-head"><span class="cap">Låseskjerm</span><strong>Den dukker opp av seg selv</strong><span>Ingen alarm å stille inn. Den kommer når det gjelder og forsvinner når du går.</span></div>
-          <figure class="moment"><figcaption><b>06:55</b> En halvtime før du må gå</figcaption>
-            <div class="cell lock"><span class="clock">6:55</span><span class="grow"></span>
-              <div class="la-mini"><div><span class="cap">Dra om</span><span class="big">30:00</span></div><div class="right"><span class="cap">Til jobb</span><b>4 → Vestli</b></div></div></div></figure>
-          <figure class="moment"><figcaption><b>07:23</b> To minutter: den blir blå</figcaption>
-            <div class="cell lock"><span class="clock">7:23</span><span class="grow"></span>
-              <div class="la-mini"><div><span class="cap">Dra om</span><span class="big hot">2:00</span></div><div class="right"><span class="cap">Til jobb</span><b>4 → Vestli</b></div></div></div></figure>
-          <figure class="moment"><figcaption><b>07:34</b> Om bord: teller ned til du er fremme</figcaption>
-            <div class="cell lock"><span class="clock">7:34</span><span class="grow"></span>
-              <div class="la-mini"><div><span class="cap">Fremme om</span><span class="big">24:00</span></div><div class="right"><span class="cap">Av på Majorstuen</span><b>4 → Vestli</b></div></div></div></figure>
-          <figure class="moment"><figcaption><b>16:07</b> Toget er sent, så påminnelsen ventet</figcaption>
-            <div class="cell lock"><span class="clock">16:07</span><span class="grow"></span>
-              <div class="notif"><img src="/assets/icon-256.png" alt=""><div><strong>Dra nå</strong>4 → Bergkrystallen kl. 16:15 <span class="late">+3</span></div></div>
-              <div class="la-mini"><div><span class="cap">Dra om</span><span class="big hot">0:00</span></div><div class="right"><span class="cap">Til hjem</span><b>4 → Bergkrystallen</b></div></div></div></figure>
+          <div class="day-pin">
+            <div class="row-head"><span class="cap">Låseskjerm</span><strong>Den dukker opp av seg selv</strong><span>Ingen alarm å stille inn. Den kommer når det gjelder og forsvinner når du går.</span></div>
+            <figure class="moment is-active"><figcaption><b>06:55</b> En halvtime før du må gå</figcaption>
+              <div class="cell lock"><span class="clock">6:55</span><span class="grow"></span>
+                <div class="la-mini"><div><span class="cap">Dra om</span><span class="big">30:00</span></div><div class="right"><span class="cap">Til jobb</span><b>4 → Vestli</b></div></div></div></figure>
+            <figure class="moment"><figcaption><b>07:23</b> To minutter: den blir blå</figcaption>
+              <div class="cell lock"><span class="clock">7:23</span><span class="grow"></span>
+                <div class="la-mini"><div><span class="cap">Dra om</span><span class="big hot">2:00</span></div><div class="right"><span class="cap">Til jobb</span><b>4 → Vestli</b></div></div></div></figure>
+            <figure class="moment"><figcaption><b>07:34</b> Om bord: teller ned til du er fremme</figcaption>
+              <div class="cell lock"><span class="clock">7:34</span><span class="grow"></span>
+                <div class="la-mini"><div><span class="cap">Fremme om</span><span class="big">24:00</span></div><div class="right"><span class="cap">Av på Majorstuen</span><b>4 → Vestli</b></div></div></div></figure>
+            <figure class="moment"><figcaption><b>16:07</b> Toget er sent, så påminnelsen ventet</figcaption>
+              <div class="cell lock"><span class="clock">16:07</span><span class="grow"></span>
+                <div class="notif"><img src="/assets/icon-256.png" alt=""><div><strong>Dra nå</strong>4 → Bergkrystallen kl. 16:15 <span class="late">+3</span></div></div>
+                <div class="la-mini"><div><span class="cap">Dra om</span><span class="big hot">0:00</span></div><div class="right"><span class="cap">Til hjem</span><b>4 → Bergkrystallen</b></div></div></div></figure>
+          </div>
         </div>
 
         <div class="day-row">
-          <div class="row-head"><span class="cap">Hjemskjerm</span><strong>Alltid der, bak appene dine</strong><span>Lås opp telefonen, og svaret står der allerede.</span></div>
-          <figure class="moment"><figcaption><b>06:55</b> 30 minutter igjen</figcaption>
-            <div class="cell home">
-              <div class="w sq"><span class="box">T</span><span class="n">30</span><span class="nx">(37)</span></div>
-              <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-              <div class="w wide"><div class="top-row"><span class="n">30 <small>min</small></span><span class="meta"><span class="cap">Til jobb</span><span>4 → Vestli · 07:31</span></span></div>
-                <div class="strip"><b>07:25</b><i></i><span>07:31</span><i></i><span>07:58</span></div></div>
-            </div></figure>
-          <figure class="moment"><figcaption><b>07:23</b> Blått betyr gå</figcaption>
-            <div class="cell home">
-              <div class="w sq hot"><span class="box">T</span><span class="n">2</span><span class="nx">(9)</span></div>
-              <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-              <div class="w wide hot"><div class="top-row"><span class="n">2 <small>min</small></span><span class="meta"><span class="cap">Til jobb</span><span>4 → Vestli · 07:31</span></span></div>
-                <div class="strip"><b>07:25</b><i></i><span>07:31</span><i></i><span>07:58</span></div></div>
-            </div></figure>
-          <figure class="moment"><figcaption><b>07:34</b> Om bord, med stoppet du skal av på</figcaption>
-            <div class="cell home">
-              <div class="w board"><span class="ph">OM BORD<br>FREMME 07:58</span><span class="n">24 <small>min</small></span><span class="bd">(4) AV OM 21 MIN</span><span class="stop">MAJORSTUEN</span></div>
-              <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-              <div class="w wide"><div class="top-row"><span class="n">24 <small>min</small></span><span class="meta"><span class="cap ph">Om bord · jobb</span><span>(4) AV OM 21 MIN · MAJORSTUEN</span></span></div>
-                <div class="strip"><span>07:31</span><i class="fill"></i><span>07:58</span></div></div>
-            </div></figure>
-          <figure class="moment"><figcaption><b>16:07</b> På tide å dra hjem</figcaption>
-            <div class="cell home">
-              <div class="w sq hot"><span class="box">T</span><span class="n">0</span><span class="nx">(8)</span></div>
-              <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-              <div class="w wide hot"><div class="top-row"><span class="n">0 <small>min</small></span><span class="meta"><span class="cap">Til hjem</span><span>4 → Bergkrystallen · 16:15 +3</span></span></div>
-                <div class="strip"><b>16:07</b><i></i><span>16:15</span><i></i><span>16:52</span></div></div>
-            </div></figure>
+          <div class="day-pin">
+            <div class="row-head"><span class="cap">Hjemskjerm</span><strong>Alltid der, bak appene dine</strong><span>Lås opp telefonen, og svaret står der allerede.</span></div>
+            <figure class="moment is-active"><figcaption><b>06:55</b> 30 minutter igjen</figcaption>
+              <div class="cell home">
+                <div class="w sq"><span class="box">T</span><span class="n">30</span><span class="nx">(37)</span></div>
+                <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+                <div class="w wide"><div class="top-row"><span class="n">30 <small>min</small></span><span class="meta"><span class="cap">Til jobb</span><span>4 → Vestli · 07:31</span></span></div>
+                  <div class="strip"><b>07:25</b><i></i><span>07:31</span><i></i><span>07:58</span></div></div>
+              </div></figure>
+            <figure class="moment"><figcaption><b>07:23</b> Blått betyr gå</figcaption>
+              <div class="cell home">
+                <div class="w sq hot"><span class="box">T</span><span class="n">2</span><span class="nx">(9)</span></div>
+                <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+                <div class="w wide hot"><div class="top-row"><span class="n">2 <small>min</small></span><span class="meta"><span class="cap">Til jobb</span><span>4 → Vestli · 07:31</span></span></div>
+                  <div class="strip"><b>07:25</b><i></i><span>07:31</span><i></i><span>07:58</span></div></div>
+              </div></figure>
+            <figure class="moment"><figcaption><b>07:34</b> Om bord, med stoppet du skal av på</figcaption>
+              <div class="cell home">
+                <div class="w board"><span class="ph">OM BORD<br>FREMME 07:58</span><span class="n">24 <small>min</small></span><span class="bd">(4) AV OM 21 MIN</span><span class="stop">MAJORSTUEN</span></div>
+                <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+                <div class="w wide"><div class="top-row"><span class="n">24 <small>min</small></span><span class="meta"><span class="cap ph">Om bord · jobb</span><span>(4) AV OM 21 MIN · MAJORSTUEN</span></span></div>
+                  <div class="strip"><span>07:31</span><i class="fill"></i><span>07:58</span></div></div>
+              </div></figure>
+            <figure class="moment"><figcaption><b>16:07</b> På tide å dra hjem</figcaption>
+              <div class="cell home">
+                <div class="w sq hot"><span class="box">T</span><span class="n">0</span><span class="nx">(8)</span></div>
+                <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+                <div class="w wide hot"><div class="top-row"><span class="n">0 <small>min</small></span><span class="meta"><span class="cap">Til hjem</span><span>4 → Bergkrystallen · 16:15 +3</span></span></div>
+                  <div class="strip"><b>16:07</b><i></i><span>16:15</span><i></i><span>16:52</span></div></div>
+              </div></figure>
+          </div>
         </div>
       </div>
     </div>
@@ -432,6 +438,6 @@
   </div>
 </footer>
 
-<script src="/assets/home.js?v=2" defer></script>
+<script src="/assets/home.js?v=3" defer></script>
 </body>
 </html>

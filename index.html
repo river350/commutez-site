@@ -18,7 +18,7 @@
   <meta name="theme-color" content="#f5f3ef">
   <link rel="preload" href="/assets/fonts/IBMPlexMono-Light.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="/assets/fonts/SchibstedGrotesk.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="/assets/home.css?v=2">
+  <link rel="stylesheet" href="/assets/home.css?v=3">
 </head>
 <body>
 
@@ -208,64 +208,70 @@
         </div>
 
         <div class="day-row">
-          <div class="row-head"><span class="cap">Dynamic Island</span><strong>At the top of every app</strong><span>Press and hold for the full view.</span></div>
-          <figure class="moment"><figcaption><b>06:55</b> The window opens</figcaption>
-            <div class="cell isl"><span class="pill"><span>30:00</span><span class="badge">4</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
-          <figure class="moment"><figcaption><b>07:23</b> Blue means go</figcaption>
-            <div class="cell isl"><span class="pill"><span>2:00</span><span class="badge">4</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
-          <figure class="moment"><figcaption><b>07:34</b> On board: the sides swap</figcaption>
-            <div class="cell isl"><span class="pill flip"><span class="badge">4</span><span>24:00</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
-          <figure class="moment"><figcaption><b>16:07</b> Home on time</figcaption>
-            <div class="cell isl"><span class="pill"><span>0:00</span><span class="badge">4</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
+          <div class="day-pin">
+            <div class="row-head"><span class="cap">Dynamic Island</span><strong>At the top of every app</strong><span>Press and hold for the full view.</span></div>
+            <figure class="moment is-active"><figcaption><b>06:55</b> The window opens</figcaption>
+              <div class="cell isl"><span class="pill"><span>30:00</span><span class="badge">4</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
+            <figure class="moment"><figcaption><b>07:23</b> Blue means go</figcaption>
+              <div class="cell isl"><span class="pill"><span>2:00</span><span class="badge">4</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
+            <figure class="moment"><figcaption><b>07:34</b> On board: the sides swap</figcaption>
+              <div class="cell isl"><span class="pill flip"><span class="badge">4</span><span>24:00</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
+            <figure class="moment"><figcaption><b>16:07</b> Home on time</figcaption>
+              <div class="cell isl"><span class="pill"><span>0:00</span><span class="badge">4</span></span><div class="ghost-lines"><span style="width:80%"></span><span style="width:60%"></span></div></div></figure>
+          </div>
         </div>
 
         <div class="day-row">
-          <div class="row-head"><span class="cap">Lock Screen</span><strong>It shows up by itself</strong><span>No alarm to set. It arrives when it matters and leaves when you do.</span></div>
-          <figure class="moment"><figcaption><b>06:55</b> Half an hour before you leave</figcaption>
-            <div class="cell lock"><span class="clock">6:55</span><span class="grow"></span>
-              <div class="la-mini"><div><span class="cap">Leave in</span><span class="big">30:00</span></div><div class="right"><span class="cap">To work</span><b>4 → Vestli</b></div></div></div></figure>
-          <figure class="moment"><figcaption><b>07:23</b> Two minutes: it turns blue</figcaption>
-            <div class="cell lock"><span class="clock">7:23</span><span class="grow"></span>
-              <div class="la-mini"><div><span class="cap">Leave in</span><span class="big hot">2:00</span></div><div class="right"><span class="cap">To work</span><b>4 → Vestli</b></div></div></div></figure>
-          <figure class="moment"><figcaption><b>07:34</b> On board: counting to arrival</figcaption>
-            <div class="cell lock"><span class="clock">7:34</span><span class="grow"></span>
-              <div class="la-mini"><div><span class="cap">Arrive in</span><span class="big">24:00</span></div><div class="right"><span class="cap">Off at Majorstuen</span><b>4 → Vestli</b></div></div></div></figure>
-          <figure class="moment"><figcaption><b>16:07</b> The train is late, so the reminder waited</figcaption>
-            <div class="cell lock"><span class="clock">16:07</span><span class="grow"></span>
-              <div class="notif"><img src="/assets/icon-256.png" alt=""><div><strong>Leave now</strong>4 → Bergkrystallen at 16:15 <span class="late">+3</span></div></div>
-              <div class="la-mini"><div><span class="cap">Leave in</span><span class="big hot">0:00</span></div><div class="right"><span class="cap">To home</span><b>4 → Bergkrystallen</b></div></div></div></figure>
+          <div class="day-pin">
+            <div class="row-head"><span class="cap">Lock Screen</span><strong>It shows up by itself</strong><span>No alarm to set. It arrives when it matters and leaves when you do.</span></div>
+            <figure class="moment is-active"><figcaption><b>06:55</b> Half an hour before you leave</figcaption>
+              <div class="cell lock"><span class="clock">6:55</span><span class="grow"></span>
+                <div class="la-mini"><div><span class="cap">Leave in</span><span class="big">30:00</span></div><div class="right"><span class="cap">To work</span><b>4 → Vestli</b></div></div></div></figure>
+            <figure class="moment"><figcaption><b>07:23</b> Two minutes: it turns blue</figcaption>
+              <div class="cell lock"><span class="clock">7:23</span><span class="grow"></span>
+                <div class="la-mini"><div><span class="cap">Leave in</span><span class="big hot">2:00</span></div><div class="right"><span class="cap">To work</span><b>4 → Vestli</b></div></div></div></figure>
+            <figure class="moment"><figcaption><b>07:34</b> On board: counting to arrival</figcaption>
+              <div class="cell lock"><span class="clock">7:34</span><span class="grow"></span>
+                <div class="la-mini"><div><span class="cap">Arrive in</span><span class="big">24:00</span></div><div class="right"><span class="cap">Off at Majorstuen</span><b>4 → Vestli</b></div></div></div></figure>
+            <figure class="moment"><figcaption><b>16:07</b> The train is late, so the reminder waited</figcaption>
+              <div class="cell lock"><span class="clock">16:07</span><span class="grow"></span>
+                <div class="notif"><img src="/assets/icon-256.png" alt=""><div><strong>Leave now</strong>4 → Bergkrystallen at 16:15 <span class="late">+3</span></div></div>
+                <div class="la-mini"><div><span class="cap">Leave in</span><span class="big hot">0:00</span></div><div class="right"><span class="cap">To home</span><b>4 → Bergkrystallen</b></div></div></div></figure>
+          </div>
         </div>
 
         <div class="day-row">
-          <div class="row-head"><span class="cap">Home Screen</span><strong>Always on, behind your apps</strong><span>Unlock your phone and the answer is already there.</span></div>
-          <figure class="moment"><figcaption><b>06:55</b> 30 minutes to go</figcaption>
-            <div class="cell home">
-              <div class="w sq"><span class="box">T</span><span class="n">30</span><span class="nx">(37)</span></div>
-              <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-              <div class="w wide"><div class="top-row"><span class="n">30 <small>min</small></span><span class="meta"><span class="cap">To work</span><span>4 → Vestli · 07:31</span></span></div>
-                <div class="strip"><b>07:25</b><i></i><span>07:31</span><i></i><span>07:58</span></div></div>
-            </div></figure>
-          <figure class="moment"><figcaption><b>07:23</b> Blue means go</figcaption>
-            <div class="cell home">
-              <div class="w sq hot"><span class="box">T</span><span class="n">2</span><span class="nx">(9)</span></div>
-              <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-              <div class="w wide hot"><div class="top-row"><span class="n">2 <small>min</small></span><span class="meta"><span class="cap">To work</span><span>4 → Vestli · 07:31</span></span></div>
-                <div class="strip"><b>07:25</b><i></i><span>07:31</span><i></i><span>07:58</span></div></div>
-            </div></figure>
-          <figure class="moment"><figcaption><b>07:34</b> On board, with the stop to get off at</figcaption>
-            <div class="cell home">
-              <div class="w board"><span class="ph">ON BOARD<br>ARRIVES 07:58</span><span class="n">24 <small>min</small></span><span class="bd">(4) OFF IN 21 MIN</span><span class="stop">MAJORSTUEN</span></div>
-              <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-              <div class="w wide"><div class="top-row"><span class="n">24 <small>min</small></span><span class="meta"><span class="cap ph">On board · work</span><span>(4) OFF IN 21 MIN · MAJORSTUEN</span></span></div>
-                <div class="strip"><span>07:31</span><i class="fill"></i><span>07:58</span></div></div>
-            </div></figure>
-          <figure class="moment"><figcaption><b>16:07</b> Time to head home</figcaption>
-            <div class="cell home">
-              <div class="w sq hot"><span class="box">T</span><span class="n">0</span><span class="nx">(8)</span></div>
-              <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-              <div class="w wide hot"><div class="top-row"><span class="n">0 <small>min</small></span><span class="meta"><span class="cap">To home</span><span>4 → Bergkrystallen · 16:15 +3</span></span></div>
-                <div class="strip"><b>16:07</b><i></i><span>16:15</span><i></i><span>16:52</span></div></div>
-            </div></figure>
+          <div class="day-pin">
+            <div class="row-head"><span class="cap">Home Screen</span><strong>Always on, behind your apps</strong><span>Unlock your phone and the answer is already there.</span></div>
+            <figure class="moment is-active"><figcaption><b>06:55</b> 30 minutes to go</figcaption>
+              <div class="cell home">
+                <div class="w sq"><span class="box">T</span><span class="n">30</span><span class="nx">(37)</span></div>
+                <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+                <div class="w wide"><div class="top-row"><span class="n">30 <small>min</small></span><span class="meta"><span class="cap">To work</span><span>4 → Vestli · 07:31</span></span></div>
+                  <div class="strip"><b>07:25</b><i></i><span>07:31</span><i></i><span>07:58</span></div></div>
+              </div></figure>
+            <figure class="moment"><figcaption><b>07:23</b> Blue means go</figcaption>
+              <div class="cell home">
+                <div class="w sq hot"><span class="box">T</span><span class="n">2</span><span class="nx">(9)</span></div>
+                <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+                <div class="w wide hot"><div class="top-row"><span class="n">2 <small>min</small></span><span class="meta"><span class="cap">To work</span><span>4 → Vestli · 07:31</span></span></div>
+                  <div class="strip"><b>07:25</b><i></i><span>07:31</span><i></i><span>07:58</span></div></div>
+              </div></figure>
+            <figure class="moment"><figcaption><b>07:34</b> On board, with the stop to get off at</figcaption>
+              <div class="cell home">
+                <div class="w board"><span class="ph">ON BOARD<br>ARRIVES 07:58</span><span class="n">24 <small>min</small></span><span class="bd">(4) OFF IN 21 MIN</span><span class="stop">MAJORSTUEN</span></div>
+                <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+                <div class="w wide"><div class="top-row"><span class="n">24 <small>min</small></span><span class="meta"><span class="cap ph">On board · work</span><span>(4) OFF IN 21 MIN · MAJORSTUEN</span></span></div>
+                  <div class="strip"><span>07:31</span><i class="fill"></i><span>07:58</span></div></div>
+              </div></figure>
+            <figure class="moment"><figcaption><b>16:07</b> Time to head home</figcaption>
+              <div class="cell home">
+                <div class="w sq hot"><span class="box">T</span><span class="n">0</span><span class="nx">(8)</span></div>
+                <div class="icons" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+                <div class="w wide hot"><div class="top-row"><span class="n">0 <small>min</small></span><span class="meta"><span class="cap">To home</span><span>4 → Bergkrystallen · 16:15 +3</span></span></div>
+                  <div class="strip"><b>16:07</b><i></i><span>16:15</span><i></i><span>16:52</span></div></div>
+              </div></figure>
+          </div>
         </div>
       </div>
     </div>
@@ -432,6 +438,6 @@
   </div>
 </footer>
 
-<script src="/assets/home.js?v=2" defer></script>
+<script src="/assets/home.js?v=3" defer></script>
 </body>
 </html>

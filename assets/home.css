@@ -333,16 +333,40 @@ p { margin: 0; }
   .stage { min-height: 0; }
 }
 
-/* Phone: the day grid unfolds into one block per surface, its four moments
-   stacked, so you scroll through the whole journey once per surface. */
+/* Desktop: the pin wrapper is invisible to the grid. */
+.day-pin { display: contents; }
+.day-steps { display: none; }
+
+/* Phone: each surface pins to the screen while you scroll, and its four
+   moments replace each other in place (06:55 → 07:23 → 07:34 → 16:07).
+   When the last one has shown, the block lets go and the next surface pins.
+   home.js picks the active moment from the scroll position; without JS the
+   first moment stays visible. */
 @media (max-width: 760px) {
   .day-scroll { overflow: visible; padding-bottom: 0; }
-  .day { min-width: 0; gap: 56px; }
+  .day { min-width: 0; gap: 0; }
   .day-row.head { display: none; }
-  .day-row { display: flex; flex-direction: column; gap: 28px; }
-  .day-row + .day-row { padding-top: 40px; }
+  .day-row { display: block; height: 260vh; height: 260svh; }
+  .day-row + .day-row { padding-top: 0; border-top: 0; }
+  .day-pin {
+    position: sticky; top: 0; height: 100vh; height: 100svh;
+    display: grid; grid-template-columns: minmax(0, 1fr); align-content: center; gap: 22px;
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .row-head { grid-row: 1; }
   .row-head strong { font-size: 24px; }
-  .moment { width: 100%; max-width: 400px; }
-  .moment figcaption { display: flex; align-items: baseline; gap: 10px; font-size: 15px; font-weight: 500; margin-bottom: 10px; }
+  .moment {
+    grid-row: 2; grid-column: 1; width: 100%; max-width: 400px;
+    opacity: 0; transform: translateY(14px); pointer-events: none;
+    transition: opacity .35s ease, transform .35s ease;
+  }
+  .moment.is-active { opacity: 1; transform: none; pointer-events: auto; }
+  .moment figcaption { display: flex; align-items: baseline; gap: 10px; font-size: 15px; font-weight: 500; margin-bottom: 10px; min-height: 2.6em; }
   .moment figcaption b { font-family: var(--mono); font-feature-settings: "ss04"; font-weight: 500; font-size: 16px; color: var(--accent); }
+  .day-steps { grid-row: 3; display: flex; align-items: center; gap: 8px; }
+  .day-steps span { width: 8px; height: 8px; border-radius: 50%; background: var(--hair); transition: background .3s ease, width .3s ease; }
+  .day-steps span.on { width: 22px; border-radius: 4px; background: var(--accent); }
+}
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .moment, .day-steps span { transition: none; transform: none; }
 }

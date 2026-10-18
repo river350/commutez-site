@@ -71,4 +71,45 @@
       if (next) { e.preventDefault(); select(next, true); }
     });
   });
+
+  // ---- A normal day: pinned surfaces on phones ---------------------------
+  // Each surface block is taller than the screen and its content is sticky.
+  // How far you have scrolled through the block picks which moment shows.
+  var phone = window.matchMedia('(max-width: 760px)');
+  var rows = Array.prototype.slice.call(document.querySelectorAll('.day-row:not(.head)')).map(function (row) {
+    var pin = row.querySelector('.day-pin');
+    var moments = Array.prototype.slice.call(row.querySelectorAll('.moment'));
+    var dots = document.createElement('div');
+    dots.className = 'day-steps';
+    dots.setAttribute('aria-hidden', 'true');
+    moments.forEach(function () { dots.appendChild(document.createElement('span')); });
+    if (pin) pin.appendChild(dots);
+    return { row: row, moments: moments, dots: Array.prototype.slice.call(dots.children), current: -1 };
+  });
+
+  function show(r, index) {
+    if (r.current === index) return;
+    r.current = index;
+    r.moments.forEach(function (m, i) { m.classList.toggle('is-active', i === index); });
+    r.dots.forEach(function (d, i) { d.classList.toggle('on', i === index); });
+  }
+
+  var ticking = false;
+  function update() {
+    ticking = false;
+    var vh = window.innerHeight;
+    rows.forEach(function (r) {
+      if (!phone.matches) { show(r, 0); return; }
+      var rect = r.row.getBoundingClientRect();
+      var travel = rect.height - vh;
+      var progress = travel > 0 ? Math.min(1, Math.max(0, -rect.top / travel)) : 0;
+      show(r, Math.min(r.moments.length - 1, Math.floor(progress * r.moments.length)));
+    });
+  }
+  function onScroll() {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
 })();
