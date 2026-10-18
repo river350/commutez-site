@@ -181,6 +181,8 @@ p { margin: 0; }
 .row-head strong { display: block; font-size: 18px; font-weight: 600; line-height: 1.2; margin-top: 8px; }
 .row-head span:last-child { display: block; font-size: 14px; color: var(--text-2); margin-top: 8px; }
 
+.moment { margin: 0; min-width: 0; }
+.moment figcaption { display: none; }
 .cell { border-radius: 20px; padding: 10px; }
 .cell.isl { height: 120px; background: var(--island-bg); display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .cell.isl .pill { width: 160px; height: 32px; }
@@ -325,4 +327,18 @@ p { margin: 0; }
 @media (max-width: 640px) {
   .nav .hide-sm { display: none; }
   .stage { min-height: 0; }
+}
+
+/* Phone: the day grid unfolds into one block per surface, its four moments
+   stacked, so you scroll through the whole journey once per surface. */
+@media (max-width: 760px) {
+  .day-scroll { overflow: visible; padding-bottom: 0; }
+  .day { min-width: 0; gap: 56px; }
+  .day-row.head { display: none; }
+  .day-row { display: flex; flex-direction: column; gap: 28px; }
+  .day-row + .day-row { padding-top: 40px; }
+  .row-head strong { font-size: 24px; }
+  .moment { width: 100%; max-width: 400px; }
+  .moment figcaption { display: flex; align-items: baseline; gap: 10px; font-size: 15px; font-weight: 500; margin-bottom: 10px; }
+  .moment figcaption b { font-family: var(--mono); font-feature-settings: "ss04"; font-weight: 500; font-size: 16px; color: var(--accent); }
 }
