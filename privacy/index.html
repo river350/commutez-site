@@ -25,7 +25,7 @@
 
   <main class="wrap doc">
     <h1>Privacy Policy</h1>
-    <p class="updated">Effective 18 October 2026</p>
+    <p class="updated">Effective 19 October 2026</p>
 
     <div class="summary">
       <p><strong>The short version:</strong> Commutez has no account, no ads, no analytics and no tracking, and runs no servers of its own. Your addresses and settings stay on your devices and in your own iCloud. To plan a trip, the app sends coordinates to public transport and weather services, and nothing else about you.</p>
@@ -50,12 +50,14 @@
     <p>These requests do not include your name, Apple ID or any identifier tied to you. Each service handles the request under its own privacy policy, and like any web service it may see your IP address.</p>
 
     <h2>Location</h2>
-    <p>Location is <strong>off by default</strong>, and Commutez only asks for it if you turn on Location in the app. When you do:</p>
+    <p>Location is <strong>on by default, and only used around your commute</strong>. The first time you open the app, it explains what location is used for before iOS asks for permission. You can choose “Not now”, and you can turn location off at any time in the app or in iOS Settings. The app still works without it, from a station you pick and your own walking time.</p>
+    <p>When location is on:</p>
     <ul>
-      <li>Geofences around your home and work are monitored by iOS on your device to switch direction automatically. This needs “Always” permission.</li>
-      <li>While the app is open, your current position may be used as the starting point of a trip and sent to the services above.</li>
+      <li><strong>During your commute window</strong> (from when the countdown starts until you arrive), the app uses your position, also in the background with the app closed, to notice when you have left and when you are on board, and to count down to your arrival. This needs “Always” permission in iOS. You can limit it under Background location in the app.</li>
+      <li><strong>Outside the commute window</strong>, iOS monitors geofences around your home and work on your device, so the app learns only that you arrived at or left one of them. If you choose “Always” under Background location, iOS’s low-power significant-change service is also used during the rest of the day.</li>
+      <li>Your current position may be used as the starting point of a trip and sent to the transit services above.</li>
     </ul>
-    <p>Your location is never stored by the developer, and never sold or shared for any other purpose. You can turn it off at any time in the app or in iOS Settings.</p>
+    <p>Your location is processed on your device. It is never sent to or stored by the developer, and never sold or shared for any other purpose.</p>
 
     <h2>Notifications</h2>
     <p>Departure alerts, Live Activities and the countdown badge are scheduled locally on your device. If you send feedback, the app may ask permission to notify you when the developer replies. That notification is delivered through Apple's iCloud (CloudKit) service.</p>
