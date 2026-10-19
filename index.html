@@ -18,7 +18,7 @@
   <meta name="theme-color" content="#f5f3ef">
   <link rel="preload" href="/assets/fonts/IBMPlexMono-Light.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="/assets/fonts/SchibstedGrotesk.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="/assets/home.css?v=11">
+  <link rel="stylesheet" href="/assets/home.css?v=13">
 </head>
 <body>
 
@@ -191,13 +191,7 @@
       <p class="eyebrow">A normal Tuesday</p>
       <h2 class="h2">The app you never have to open.</h2>
       <p class="lede"><span class="t-long">Commutez is built to be glanced at. Below is one ordinary commuting day. Everything you see happens in the Dynamic Island, on the lock screen and in your widgets, without opening the app once. You decide which of them you want, separately for the trip to work and the trip home.</span><span class="t-short">One ordinary commuting day, on the Dynamic Island, the lock screen and your widgets. The app stays closed.</span></p>
-      <div class="day-filter" role="group" aria-label="Surfaces to show">
-        <span class="eyebrow">Show me</span>
-        <button type="button" class="toggle" aria-pressed="true" data-surface="island"><span class="switch" aria-hidden="true"></span>Dynamic Island</button>
-        <button type="button" class="toggle" aria-pressed="true" data-surface="lock"><span class="switch" aria-hidden="true"></span>Lock Screen</button>
-        <button type="button" class="toggle" aria-pressed="true" data-surface="home"><span class="switch" aria-hidden="true"></span>Home Screen</button>
-        <p class="filter-note"><span class="t-long">In the app the Live Activity covers both the Dynamic Island and the lock screen, and widgets you add yourself. Pick what you want to see here.</span><span class="t-short">Pick what you want to see. In the app, one switch covers the Dynamic Island and lock screen.</span></p>
-      </div>
+      <p class="filter-hint phone-only">Switch any of them off as you go. In the app, one Live Activity switch covers the Dynamic Island and the lock screen.</p>
     </div>
 
     <!-- Desktop: a grid, times across and surfaces down.
@@ -206,6 +200,13 @@
          captions on each moment only show on a phone. -->
     <div class="day-scroll">
       <div class="day">
+          <div class="day-filter" role="group" aria-label="Surfaces to show">
+            <span class="eyebrow">Show me</span>
+            <button type="button" class="toggle" aria-pressed="true" data-surface="island"><span class="switch" aria-hidden="true"></span>Dynamic Island</button>
+            <button type="button" class="toggle" aria-pressed="true" data-surface="lock"><span class="switch" aria-hidden="true"></span>Lock Screen</button>
+            <button type="button" class="toggle" aria-pressed="true" data-surface="home"><span class="switch" aria-hidden="true"></span>Home Screen</button>
+            <p class="filter-note"><span class="t-long">In the app the Live Activity covers both the Dynamic Island and the lock screen, and widgets you add yourself. Pick what you want to see here.</span><span class="t-short">Pick what you want to see. In the app, one switch covers the Dynamic Island and lock screen.</span></p>
+          </div>
         <div class="day-row head">
           <div></div>
           <div class="col-head"><span class="t">06:55</span><strong>The window opens</strong><span>Half an hour before you leave, the countdown shows up by itself.</span></div>
@@ -442,6 +443,6 @@
   </div>
 </footer>
 
-<script src="/assets/home.js?v=11" defer></script>
+<script src="/assets/home.js?v=12" defer></script>
 </body>
 </html>

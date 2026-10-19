@@ -182,16 +182,29 @@
 
   function showDay(index) {
     var before = 0;
+    var currentSurface = null;
     dayRows.forEach(function (r) { r.row.classList.remove('is-current'); });
     shownRows().forEach(function (r) {
       var n = r.moments.length;
       var mine = index >= before && index < before + n;
+      if (mine) currentSurface = r.surface;
       var m = mine ? index - before : (index < before ? 0 : n - 1);
       r.row.classList.toggle('is-current', mine);
       r.moments.forEach(function (el, i) { el.classList.toggle('is-active', i === m); });
       r.dots.forEach(function (el, i) { el.classList.toggle('on', i === m); });
       before += n;
     });
+    markSurface(currentSurface);
+  }
+
+  // underline the switch of the surface on screen (phones only)
+  function markSurface(key) {
+    var buttons = document.querySelectorAll('.day-filter [data-surface]');
+    for (var i = 0; i < buttons.length; i++) {
+      var on = !!key && buttons[i].getAttribute('data-surface') === key;
+      buttons[i].classList.toggle('is-current', on);
+      if (on) buttons[i].setAttribute('aria-current', 'true'); else buttons[i].removeAttribute('aria-current');
+    }
   }
 
   var dayScroller = document.querySelector('.day-scroll');
@@ -225,6 +238,7 @@
     if (!phone.matches) {
       // desktop: the tabs work by click; the day grid shows everything
       dayRows.forEach(function (r) { r.row.classList.remove('is-current'); });
+      markSurface(null);
       stages.forEach(function (s) { s.current = -1; });
       return;
     }

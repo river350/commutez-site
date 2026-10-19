@@ -365,7 +365,7 @@ button.toggle:hover { color: var(--accent); }
 
 /* Desktop: phone-only helpers stay out of the way. */
 .day-pin, .day-end { display: contents; }
-.day-steps, .step-track, .snap-pt, .t-short, .swipe-dots { display: none; }
+.day-steps, .step-track, .snap-pt, .t-short, .swipe-dots, .phone-only { display: none; }
 
 @media (max-width: 760px) {
   :root { --bar: 56px; --screen: calc(100vh - var(--bar)); }
@@ -429,7 +429,20 @@ button.toggle:hover { color: var(--accent); }
     position: sticky; top: var(--bar); background: var(--paper);
   }
   .day-row.head { display: none; }
-  .day-row:not(.head) { grid-area: 1 / 1; display: block; opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+  .day-row:not(.head) { grid-area: 2 / 1; display: block; opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+  /* the surface switches sit on top of the stage like tabs; the surface
+     you're looking at is underlined, and each can still be switched off */
+  .phone-only { display: block; }
+  .filter-hint { font-size: 14px; color: var(--muted); max-width: 46ch; }
+  .day .day-filter { grid-row: 1; grid-column: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 10px; margin: 0 0 20px; border-bottom: 1px solid var(--hair); }
+  .day .day-filter .eyebrow, .day .day-filter .filter-note { display: none; }
+  .day .day-filter button.toggle { min-width: 0; gap: 6px; font-size: 11px; line-height: 1.25; text-align: left; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  .day .day-filter .switch { flex: none; }
+  .day .day-filter button.toggle.is-current { border-bottom-color: var(--ink-2); }
+  .day .day-filter .switch { width: 22px; height: 13px; border-radius: 7px; }
+  .day .day-filter .switch::after { top: 2px; left: 11px; width: 9px; height: 9px; }
+  .day .day-filter .toggle[aria-pressed="false"] .switch::after { left: 2px; }
+  .row-head .cap { display: none; }
   .day-row.is-current { opacity: 1; pointer-events: auto; }
   .day-row + .day-row { padding-top: 0; border-top: 0; }
   .day-pin { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
