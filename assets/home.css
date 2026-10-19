@@ -365,7 +365,7 @@ button.toggle:hover { color: var(--accent); }
 
 /* Desktop: phone-only helpers stay out of the way. */
 .day-pin, .day-end { display: contents; }
-.day-steps, .step-track, .snap-pt, .t-short { display: none; }
+.day-steps, .step-track, .snap-pt, .t-short, .swipe-dots { display: none; }
 
 @media (max-width: 760px) {
   :root { --bar: 56px; --screen: calc(100vh - var(--bar)); }
@@ -398,7 +398,7 @@ button.toggle:hover { color: var(--accent); }
 
   /* 2 · one number: pinned, 5 steps */
   #how { position: relative; padding-top: 0; padding-bottom: 0; }
-  #how > .inner { position: sticky; top: var(--bar); height: var(--screen); gap: 14px; justify-content: center; padding-block: 16px; }
+  #how > .inner { position: sticky; top: var(--bar); height: var(--screen); gap: 14px; justify-content: flex-start; padding-block: 20px 16px; }
   #how .intro { gap: 8px; }
   #how .h2 { font-size: clamp(30px, 8.5vw, 38px); }
   .tabs { flex-wrap: nowrap; overflow-x: auto; gap: 18px; scrollbar-width: none; }
@@ -407,7 +407,7 @@ button.toggle:hover { color: var(--accent); }
   .surface { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 14px; }
   .surface-copy { flex: none; max-width: none; gap: 0; }
   .surface-copy .step, .surface-copy h3 { display: none; }
-  .surface-copy p { font-size: 16px; }
+  .surface-copy p { font-size: 16px; min-height: 3.1em; } /* two lines, so the stage below never moves */
   .stage { flex: none; min-height: 0; }
   .phone { width: fit-content; padding: 6px; border-radius: 30px; }
   .phone .screen { height: max(150px, calc(var(--screen) - 300px)); width: auto; border-radius: 24px; }
@@ -425,7 +425,7 @@ button.toggle:hover { color: var(--accent); }
   #day .intro { min-height: var(--screen); justify-content: center; scroll-snap-align: start; scroll-snap-stop: always; }
   .day-scroll { overflow: visible; padding-bottom: 0; position: relative; }
   .day {
-    min-width: 0; height: var(--screen); display: grid; grid-template-columns: minmax(0, 1fr); align-content: center;
+    min-width: 0; height: var(--screen); display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; padding-top: 28px;
     position: sticky; top: var(--bar); background: var(--paper);
   }
   .day-row.head { display: none; }
@@ -447,8 +447,58 @@ button.toggle:hover { color: var(--accent); }
   .choices { gap: 12px 20px; padding: 18px 20px; }
   .closing { border-top: 0; padding-top: 0; }
 
-  /* 4–8 · not rebuilt yet: a notch at each block so nothing is skipped */
-  .band:not(#how):not(#day) .intro, .cards > *, .details > *, .split > div:first-child, .facts, .countries, .get .box { scroll-snap-align: start; }
+  /* 4–7 · one screen each: week, details, privacy, countries */
+  main > section.band:not(#how):not(#day) {
+    height: var(--screen); padding-block: 16px; display: flex; align-items: center;
+    scroll-snap-align: start; scroll-snap-stop: always;
+  }
+  main > section.band:not(#how):not(#day) > .inner { width: 100%; gap: 20px; }
+  main > section.band:not(#how):not(#day) .intro { gap: 12px; }
+  main > section.band:not(#how):not(#day) .h2 { font-size: clamp(30px, 8.5vw, 38px); }
+  main > section.band:not(#how):not(#day) .lede { font-size: 16px; }
+
+  /* week and details: swipe sideways through the cards */
+  .cards, .details {
+    display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    margin-left: calc(-1 * max(24px, env(safe-area-inset-left, 0px))); margin-right: calc(-1 * max(24px, env(safe-area-inset-right, 0px)));
+    padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px));
+    scroll-padding-left: max(24px, env(safe-area-inset-left, 0px)); scrollbar-width: none;
+  }
+  .cards::-webkit-scrollbar, .details::-webkit-scrollbar { display: none; }
+  .cards > *, .details > * { flex: 0 0 86%; scroll-snap-align: start; }
+  .card { padding: 22px; gap: 14px; }
+  .detail { padding-top: 16px; gap: 12px; }
+  .swipe-dots { display: flex; gap: 8px; }
+  .swipe-dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--hair); transition: background .3s ease, width .3s ease; }
+  .dark .swipe-dots span { background: var(--hair-dark); }
+  .swipe-dots span.on { width: 22px; border-radius: 4px; background: var(--accent); }
+  .dark .swipe-dots span.on { background: var(--accent-on-dark); }
+
+  /* privacy: one paragraph, tighter facts */
+  .split { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 18px; }
+  .split > div:first-child { flex: none; gap: 12px; }
+  .facts { flex: none; font-size: 12px; }
+  .facts div { padding: 10px 0; }
+
+  /* countries: one compact row each */
+  .countries { grid-template-columns: minmax(0, 1fr); }
+  .countries div { display: grid; grid-template-columns: 34px minmax(0, 1fr); column-gap: 8px; padding: 9px 0; }
+  .countries .code { grid-row: span 2; align-self: center; }
+  .countries strong { font-size: 18px; line-height: 1.25; }
+  .countries span:nth-child(3) { font-size: 14px; }
+  .countries .src { display: none; }
+
+  /* 8 · get it: one screen, the footer scrolls in after it */
+  .get { height: var(--screen); padding-block: 16px; display: flex; align-items: center; scroll-snap-align: start; scroll-snap-stop: always; }
+  .get .box { width: 100%; padding: 24px; gap: 22px; }
+  .get .row { gap: 16px; }
+  .get .copy { gap: 12px; }
+  .get h2 { font-size: clamp(28px, 8vw, 34px); }
+  .get p { font-size: 16px; }
+  .get .count { display: none; }
+  .stages div { padding-top: 12px; gap: 2px; }
+  .stages strong { font-size: 16px; }
+  .stages span:last-child { display: none; }
   .foot { scroll-snap-align: end; }
 }
 @media (max-width: 760px) and (prefers-reduced-motion: reduce) {

@@ -234,6 +234,25 @@
     });
   }
 
+  // ---- Swipe carousels (phones): dots under "your week" and "details" ---
+  Array.prototype.slice.call(document.querySelectorAll('.cards, .details')).forEach(function (list) {
+    var items = Array.prototype.slice.call(list.children);
+    if (items.length < 2) return;
+    var dots = document.createElement('div');
+    dots.className = 'swipe-dots';
+    dots.setAttribute('aria-hidden', 'true');
+    items.forEach(function () { dots.appendChild(document.createElement('span')); });
+    list.parentNode.insertBefore(dots, list.nextSibling);
+    var marks = Array.prototype.slice.call(dots.children);
+    function mark() {
+      var stepX = items[1].offsetLeft - items[0].offsetLeft || 1;
+      var i = Math.min(items.length - 1, Math.max(0, Math.round(list.scrollLeft / stepX)));
+      marks.forEach(function (m, k) { m.classList.toggle('on', k === i); });
+    }
+    list.addEventListener('scroll', mark, { passive: true });
+    mark();
+  });
+
   var ticking = false;
   var settle = 0;
   function onScroll() {
