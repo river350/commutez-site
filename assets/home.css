@@ -288,7 +288,7 @@ button.toggle:hover { color: var(--accent); }
 .dir span.on { border-bottom-color: var(--paper); color: var(--paper); }
 
 /* ---------- details ---------- */
-.details { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 48px 40px; }
+.details { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 48px 32px; }
 .detail { display: flex; flex-direction: column; gap: 16px; border-top: 1px solid var(--ink-2); padding-top: 20px; }
 .detail h3 { font-size: 21px; font-weight: 600; }
 .detail p { font-size: 16px; color: var(--text-2); }
