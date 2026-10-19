@@ -365,7 +365,7 @@ button.toggle:hover { color: var(--accent); }
 
 /* Desktop: phone-only helpers stay out of the way. */
 .day-pin, .day-end { display: contents; }
-.day-steps, .step-track, .snap-pt, .t-short, .swipe-dots, .phone-only { display: none; }
+.day-steps, .step-track, .snap-pt, .t-short, .swipe-nav, .phone-only { display: none; }
 
 @media (max-width: 760px) {
   :root { --bar: 56px; --screen: calc(100vh - var(--bar)); }
@@ -472,16 +472,27 @@ button.toggle:hover { color: var(--accent); }
 
   /* week and details: swipe sideways through the cards */
   .cards, .details {
-    display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    /* each card fills the width; the gap is two gutters wide so the next
+       card never peeks in with half its text cut off */
+    display: flex; gap: calc(2 * max(24px, env(safe-area-inset-left, 0px))); overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
     margin-left: calc(-1 * max(24px, env(safe-area-inset-left, 0px))); margin-right: calc(-1 * max(24px, env(safe-area-inset-right, 0px)));
     padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px));
     scroll-padding-left: max(24px, env(safe-area-inset-left, 0px)); scrollbar-width: none;
   }
   .cards::-webkit-scrollbar, .details::-webkit-scrollbar { display: none; }
-  .cards > *, .details > * { flex: 0 0 86%; scroll-snap-align: start; }
+  .cards > *, .details > * { flex: 0 0 100%; scroll-snap-align: start; }
   .card { padding: 22px; gap: 14px; }
   .detail { padding-top: 16px; gap: 12px; }
+  .swipe-nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
   .swipe-dots { display: flex; gap: 8px; }
+  .swipe-arrows { display: flex; gap: 10px; }
+  .swipe-arrows button {
+    appearance: none; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--hair);
+    background: none; color: inherit; font: inherit; font-size: 20px; line-height: 1; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .dark .swipe-arrows button { border-color: var(--hair-dark); }
+  .swipe-arrows button:disabled { opacity: .3; cursor: default; }
   .swipe-dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--hair); transition: background .3s ease, width .3s ease; }
   .dark .swipe-dots span { background: var(--hair-dark); }
   .swipe-dots span.on { width: 22px; border-radius: 4px; background: var(--accent); }
@@ -503,7 +514,9 @@ button.toggle:hover { color: var(--accent); }
 
   /* 8 · get it: one screen, the footer scrolls in after it */
   .get { height: var(--screen); padding-block: 16px; display: flex; align-items: center; scroll-snap-align: start; scroll-snap-stop: always; }
-  .get .box { width: 100%; padding: 24px; gap: 22px; }
+  /* a full black screen like the other dark chapters, not a card on paper */
+  .get { background: var(--ink); }
+  .get .box { width: 100%; padding: 0; border-radius: 0; gap: 22px; }
   .get .row { gap: 16px; }
   .get .copy { gap: 12px; }
   .get h2 { font-size: clamp(28px, 8vw, 34px); }

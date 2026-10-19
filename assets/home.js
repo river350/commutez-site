@@ -248,21 +248,43 @@
     });
   }
 
-  // ---- Swipe carousels (phones): dots under "your week" and "details" ---
+  // ---- Swipe carousels (phones): "your week" and "details" ------------
+  // One full-width card at a time. Dots show where you are; the arrows
+  // show there's more sideways and step one card when tapped.
   Array.prototype.slice.call(document.querySelectorAll('.cards, .details')).forEach(function (list) {
     var items = Array.prototype.slice.call(list.children);
     if (items.length < 2) return;
+    var nav = document.createElement('div');
+    nav.className = 'swipe-nav';
     var dots = document.createElement('div');
     dots.className = 'swipe-dots';
     dots.setAttribute('aria-hidden', 'true');
     items.forEach(function () { dots.appendChild(document.createElement('span')); });
-    list.parentNode.insertBefore(dots, list.nextSibling);
+    var arrows = document.createElement('div');
+    arrows.className = 'swipe-arrows';
+    var prev = document.createElement('button');
+    var next = document.createElement('button');
+    prev.type = next.type = 'button';
+    prev.textContent = '‹';
+    next.textContent = '›';
+    prev.setAttribute('aria-label', norsk ? 'Forrige' : 'Previous');
+    next.setAttribute('aria-label', norsk ? 'Neste' : 'Next');
+    arrows.appendChild(prev);
+    arrows.appendChild(next);
+    nav.appendChild(dots);
+    nav.appendChild(arrows);
+    list.parentNode.insertBefore(nav, list.nextSibling);
     var marks = Array.prototype.slice.call(dots.children);
+    function stepX() { return items[1].offsetLeft - items[0].offsetLeft || 1; }
+    function current() { return Math.min(items.length - 1, Math.max(0, Math.round(list.scrollLeft / stepX()))); }
     function mark() {
-      var stepX = items[1].offsetLeft - items[0].offsetLeft || 1;
-      var i = Math.min(items.length - 1, Math.max(0, Math.round(list.scrollLeft / stepX)));
+      var i = current();
       marks.forEach(function (m, k) { m.classList.toggle('on', k === i); });
+      prev.disabled = i === 0;
+      next.disabled = i === items.length - 1;
     }
+    prev.addEventListener('click', function () { list.scrollTo({ left: (current() - 1) * stepX(), behavior: reduce ? 'auto' : 'smooth' }); });
+    next.addEventListener('click', function () { list.scrollTo({ left: (current() + 1) * stepX(), behavior: reduce ? 'auto' : 'smooth' }); });
     list.addEventListener('scroll', mark, { passive: true });
     mark();
   });
