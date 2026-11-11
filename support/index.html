@@ -4,8 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Support — Commutez</title>
-  <meta name="description" content="Help with Commutez: widgets, Live Activities, location, coverage and how to get in touch.">
+  <meta name="description" content="Help with Commutez: first launch, days off, notifications, widgets, Live Activities, location, Apple Watch and how to get in touch.">
   <link rel="canonical" href="https://commutez.app/support/">
+  <link rel="alternate" hreflang="en" href="https://commutez.app/support/">
+  <link rel="alternate" hreflang="nb" href="https://commutez.app/no/support/">
+  <link rel="alternate" hreflang="x-default" href="https://commutez.app/support/">
   <link rel="icon" href="/assets/favicon.png">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <meta name="theme-color" content="#f5f3ef" media="(prefers-color-scheme: light)">
@@ -16,9 +19,10 @@
   <header class="site-header">
     <div class="wrap">
       <a class="brand" href="/"><img src="/assets/icon-256.png" alt="">Commutez</a>
-      <nav class="nav">
+      <nav class="nav" aria-label="Main">
         <a href="/support/" aria-current="page">Support</a>
         <a href="/privacy/">Privacy</a>
+        <span class="lang" aria-label="Language"><a href="/no/support/" lang="nb" hreflang="nb">NO</a> / <a href="/support/" aria-current="page" lang="en">EN</a></span>
       </nav>
     </div>
   </header>
@@ -29,55 +33,105 @@
 
     <h2>Get in touch</h2>
     <div class="contact-card">
-      <p><strong>The fastest way:</strong> tap <em>Send feedback</em> in the app’s setup screen. You can attach a screenshot, and the reply shows up right in the app.</p>
+      <p><strong>The fastest way:</strong> in the app, open Settings › 04 APP › <em>Send feedback</em>. You can attach a screenshot and choose to include trip details, and you see everything that is sent before it goes. Replies show up in the app under <em>Your reports</em>.</p>
       <p>Or email <a href="mailto:support@commutez.app">support@commutez.app</a>.</p>
     </div>
 
-    <h2>Common questions</h2>
+    <h2>Getting started</h2>
 
     <details>
-      <summary>The widget doesn't update every minute</summary>
-      <p>The countdown in the widget ticks every minute on its own, but iOS decides how often widgets may fetch fresh departures, usually every 5 to 15 minutes. Commutez asks more often as departure gets close. A delay that appears between fetches is picked up at the next refresh, or right away when you open the app.</p>
+      <summary>What happens the first time I open the app?</summary>
+      <p>Three short steps: <em>Where do you live?</em> (you can use your current location), <em>Where do you work?</em> and <em>When do you work?</em>, where you also choose whether public holidays count. Then you see tomorrow’s trip and a setup check. Tap ✕ at any time to skip it and set things up yourself in Settings.</p>
     </details>
 
     <details>
-      <summary>The Live Activity didn't start by itself</summary>
-      <p>Live Activities appear inside your alert window, which by default is 30 minutes before you need to leave. Without push notifications, iOS only lets the app start or update a Live Activity while the app is open or during background refresh. Make sure Live Activities are allowed under iOS Settings → Commutez.</p>
+      <summary>What is the setup check?</summary>
+      <p>One screen that shows whether location (on, “Always”, Precise Location), background location, how on board starts, notifications and Live Activities are set the way the app works best. <em>Use recommended</em> sets it up for you, <em>Open iOS Settings</em> takes you to what only iOS can change, and <em>Not now</em> leaves everything as it is.</p>
     </details>
 
     <details>
-      <summary>How does it know if I'm going to work or going home?</summary>
-      <p>By default, use the HOME / WORK switch at the top of the app. If you turn on Location and allow “Always”, Commutez switches direction automatically when you arrive at or leave either place.</p>
+      <summary>What does the app use my location for?</summary>
+      <p>To plan from where you stand, to switch between home and work by itself, and to notice when you have left and when you are on board. iOS only lets it do the last two with the app closed if you choose “Always” and keep Precise Location on. Under Settings › 02 LIVE &amp; ON BOARD › Background location you choose how much: <em>Live window</em> (the default: location mainly around your trip), <em>Always</em>, or <em>Off</em>. If you leave home or work earlier than usual, the app still notices. Without location it works from your schedule, an address or station you pick, and your own walking time. What is sent where is in the <a href="/privacy/">privacy policy</a>.</p>
     </details>
 
     <details>
       <summary>Do I have to share my home address?</summary>
-      <p>No. In Norway you can pick a station instead of your address and set your walking time by hand. The trip is then planned from that station.</p>
+      <p>No. You can pick a station instead of your address and set your walking time by hand. The trip is then planned from that station. With location on, the walk is planned from where you stand.</p>
+    </details>
+
+    <h2>Day to day</h2>
+
+    <details>
+      <summary>How does it know if I’m going to work or going home?</summary>
+      <p>It follows your schedule, and you can always flip the HOME / WORK switch at the top of the app. With location on, “Always” and Precise Location, it also switches by itself when you leave or arrive at either place.</p>
+    </details>
+
+    <details>
+      <summary>I have a day off. How do I stop the countdown?</summary>
+      <p>Under your work hours in Settings, tap <em>Days off</em> and choose <em>Today</em>, <em>Tomorrow</em> or <em>Until…</em> a date. Those days have no commute: no alarm, alerts or Live Activity. The countdown says DAY OFF TODAY · TAP TO UNDO, and a tap brings the day back.</p>
+    </details>
+
+    <details>
+      <summary>Why did the alerts stop while I was away?</summary>
+      <p>When your phone is far from both home and work, alerts, the icon badge, the tap on your wrist and new Live Activities pause by themselves. They come back on their own when you return. A trip you start yourself still works as usual.</p>
+    </details>
+
+    <details>
+      <summary>Which notifications can I get?</summary>
+      <p>Each trip has its own switches in Settings. The ones you may see:</p>
+      <ul>
+        <li><strong>Time to go / Workday’s over:</strong> when it’s time to leave, timed to the real departure, so a delay moves it. On the way home it also names the next departure on the same line.</li>
+        <li><strong>Plans changed:</strong> when you need to leave earlier than planned, with the reason if it’s your own train, or “leave now” if the time has passed.</li>
+        <li><strong>Tomorrow: replacement bus for line …:</strong> a silent heads-up in the evening, once, when tomorrow morning’s train is replaced by a bus.</li>
+        <li><strong>Get off at …:</strong> the stop buzz, shortly before the stop where you get off. It comes 1 minute before by default; change it to 1–5 minutes under Stop buzz in Settings › 02 LIVE &amp; ON BOARD. It follows delays.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>The Live Activity didn’t start by itself</summary>
+      <p>iOS only lets the app start a Live Activity while it is open. When it’s getting close to time to leave, open the app or tap one of its widgets, and the countdown moves to the lock screen and the Dynamic Island. From then on it keeps counting with the app closed until you arrive. New delays reach it as often as iOS allows. Make sure Live Activities are allowed under iOS Settings › Commutez.</p>
+    </details>
+
+    <details>
+      <summary>What happens when I tap a widget?</summary>
+      <p>Tapping a widget or the Live Activity opens the app on the countdown. A weather tile opens the weather. In the Smart Stack, Commutez asks to move up while you’re on your way.</p>
+    </details>
+
+    <details>
+      <summary>The widget doesn’t update every minute</summary>
+      <p>The countdown in the widget keeps ticking on its own, but iOS decides how often widgets may fetch fresh departures. A delay that appears between fetches is picked up at the next refresh, or right away when you open the app.</p>
     </details>
 
     <details>
       <summary>Some departures are greyed out</summary>
-      <p>Those are trips you can only make if you run or take a scooter. They're shown so you know they exist, but the countdown always targets a trip you can make at walking pace.</p>
+      <p>Those are departures you won’t make at walking pace, and cancelled ones. They stay in the list so nothing disappears, but the countdown always targets a trip you can make. The last few that have already gone are marked LEFT.</p>
+    </details>
+
+    <details>
+      <summary>When does it suggest an e-scooter?</summary>
+      <p>If you turn on E-scooter in Settings › 01 THE JOURNEY, long walks to or from the stop can become scooter rides when that gets you there sooner. Outside Norway it only covers the stretch from a get-off stop you choose. Turn on <em>Scooter only when dry</em> and it skips the scooter in bad weather.</p>
     </details>
 
     <details>
       <summary>The lock screen widget is black and white</summary>
-      <p>That's iOS: lock screen widgets are always shown in a single tint. It's not a bug.</p>
+      <p>That’s iOS: lock screen widgets are always shown in a single tint. It’s not a bug.</p>
+    </details>
+
+    <h2>Devices and coverage</h2>
+
+    <details>
+      <summary>How do I set it up on Apple Watch?</summary>
+      <p>Set up Commutez on your iPhone first. The watch app gets your places and schedule from the phone, then works on its own and shows the same trip as your phone. While the phone is away from home and work, the watch skips the tap on your wrist too.</p>
     </details>
 
     <details>
       <summary>Which countries and cities are supported?</summary>
-      <p>Public transport with realtime data in Norway, Sweden, Finland, Estonia and Greater London. Car, bike and walking commutes work everywhere via Apple Maps. See the <a href="/#where">full list</a>.</p>
-    </details>
-
-    <details>
-      <summary>How do I set it up on Apple Watch or Mac?</summary>
-      <p>Set up Commutez on your iPhone first. The Watch app gets your addresses and schedule from the phone, and the Mac app syncs through iCloud.</p>
+      <p>Public transport in Norway, Sweden, Finland, Estonia and Greater London. Car, bike and walking commutes work everywhere in Europe. See the <a href="/#countries">full list</a>.</p>
     </details>
 
     <details>
       <summary>How is my data handled?</summary>
-      <p>No account, no tracking, no analytics. See the <a href="/privacy/">privacy policy</a>.</p>
+      <p>No account, no ads, no analytics, no tracking. Your addresses and settings stay on your phone and watch. See the <a href="/privacy/">privacy policy</a>.</p>
     </details>
   </main>
 

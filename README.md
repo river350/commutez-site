@@ -9,6 +9,7 @@ Hostes gratis på GitHub Pages med eget domene og automatisk HTTPS.
 | `no/index.html` | https://commutez.app/no/ | (norsk forside, samme oppsett og CSS/JS) |
 | `privacy/index.html` | https://commutez.app/privacy/ | Privacy Policy URL |
 | `support/index.html` | https://commutez.app/support/ | Support URL |
+| `no/support/index.html` | https://commutez.app/no/support/ | (norsk support, lenket fra /no/ og personvernsidens norske del) |
 
 Ingen byggesteg, ingen eksterne skript eller fonter, ingen sporing. Farger
 fra appens `Palette.swift`.

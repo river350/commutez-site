@@ -1,4 +1,4 @@
-/* Commutez — same palette as the app (Shared/DesignSystem/Palette.swift):
+/* Commutez — same palette as the app:
    paper-white or near-black canvas, one blue accent, hairlines, mono numbers. */
 
 :root {
@@ -52,6 +52,8 @@ a:hover { text-decoration-color: var(--accent); }
 .nav { display: flex; gap: 20px; font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; }
 .nav a { text-decoration: none; color: var(--dim); }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--fg); }
+.nav .lang { color: var(--faint); white-space: nowrap; }
+.nav .lang a[aria-current="page"] { text-decoration: underline; text-underline-offset: 4px; }
 
 /* Hero */
 .hero { padding: 72px 0 56px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
@@ -128,4 +130,9 @@ footer a { color: var(--dim); text-decoration: none; }
   .tile-number { font-size: 64px; }
   .features { grid-template-columns: 1fr; gap: 24px; }
   .nav { gap: 14px; }
+}
+
+/* Narrow phones: the page's own link (the h1 says it) gives way to NO / EN. */
+@media (max-width: 400px) {
+  .nav > a[aria-current="page"] { display: none; }
 }

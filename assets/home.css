@@ -1,7 +1,6 @@
 /* Commutez front page.
    Layout: full-width bands that alternate paper and near-black, each with a
-   1200px inner column. Fonts and colours are the app's own (Palette.swift,
-   Typography.swift); the page commits to that look in both OS themes. */
+   1200px inner column. Fonts and colours are the app's own; the page commits to that look in both OS themes. */
 
 @font-face { font-family: "Plex Mono"; src: url("/assets/fonts/IBMPlexMono-Light.ttf") format("truetype"); font-weight: 300; font-display: swap; }
 @font-face { font-family: "Plex Mono"; src: url("/assets/fonts/IBMPlexMono-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }

@@ -20,8 +20,7 @@
 
   // ---- Demo countdown -------------------------------------------------
   // Runs 12 → 0 minutes at 20× speed (one minute every 3 s), then starts
-  // over. At 2 minutes or less the page goes into the app's blue "hurry"
-  // state, the same threshold the app uses by default.
+  // over. Near the end the page turns blue, like the app does.
   var START = 12 * 60;
   var SPEED = 20;
   var URGENT_MIN = 2;

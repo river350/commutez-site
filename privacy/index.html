@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Privacy Policy — Commutez</title>
-  <meta name="description" content="How Commutez handles your data: no account, no tracking, no analytics, and no servers of our own.">
+  <meta name="description" content="How Commutez handles your data: no ads, no analytics, no tracking, and your addresses and settings stay on your phone.">
   <link rel="canonical" href="https://commutez.app/privacy/">
   <link rel="icon" href="/assets/favicon.png">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -25,69 +25,74 @@
 
   <main class="wrap doc">
     <h1>Privacy Policy</h1>
-    <p class="updated">Effective 19 October 2026</p>
+    <p class="updated">Effective 11 November 2026 · <a href="#nb" lang="nb" hreflang="nb">Norsk</a></p>
 
     <div class="summary">
-      <p><strong>The short version:</strong> Commutez has no account, no ads, no analytics and no tracking, and runs no servers of its own. Your addresses and settings stay on your devices and in your own iCloud. To plan a trip, the app sends coordinates to public transport and weather services, and nothing else about you.</p>
+      <p>Commutez is made by one private developer. The app has no ads, no analytics, no tracking and no third-party libraries.</p>
     </div>
 
-    <h2>Who is responsible</h2>
-    <p>Commutez is developed by Kristian Frydstad, Norway, who is the data controller for the little data described below. Contact: <a href="mailto:support@commutez.app">support@commutez.app</a>.</p>
-
-    <h2>Data stored on your devices</h2>
-    <p>Your home and work addresses (or a station you pick instead), your schedule, chosen lines and other settings are stored on your device. If you are signed in to iCloud, these settings are synced between your own iPhone, Apple Watch and Mac through Apple's iCloud key-value storage. This data is stored in your iCloud account. The developer cannot see it.</p>
-
-    <h2>Data sent to plan your trips</h2>
-    <p>To find departures, the app sends coordinates of your start and destination (your saved places, or your current position if you have turned on location) directly from your device to the transit service for your region:</p>
-    <ul>
-      <li><strong>Norway:</strong> Entur (journey planner, address search, stops and shared scooter availability)</li>
-      <li><strong>Sweden:</strong> Trafiklab / ResRobot and SL (service alerts in Stockholm)</li>
-      <li><strong>Finland and Estonia:</strong> Digitransit</li>
-      <li><strong>Greater London:</strong> Transport for London</li>
-      <li><strong>Car, bike, walking and address search:</strong> Apple Maps</li>
-      <li><strong>Weather:</strong> MET Norway (api.met.no), which receives the coordinates of your saved places</li>
-    </ul>
-    <p>These requests do not include your name, Apple ID or any identifier tied to you. Each service handles the request under its own privacy policy, and like any web service it may see your IP address.</p>
+    <h2>What stays on your phone</h2>
+    <p>Your addresses, settings and trips are stored only on your iPhone, and on your Apple Watch if you have one. Everything is gone when you delete the app.</p>
 
     <h2>Location</h2>
-    <p>Location is <strong>on by default, and only used around your commute</strong>. The first time you open the app, it explains what location is used for before iOS asks for permission. You can choose “Not now”, and you can turn location off at any time in the app or in iOS Settings. The app still works without it, from a station you pick and your own walking time.</p>
-    <p>When location is on:</p>
+    <p>Commutez uses your location on the phone for the countdown, to know whether you are at home or at work, and to see when you are on board. To plan your trip, your location and the coordinates of your places are sent, rounded to about 10 metres, to:</p>
     <ul>
-      <li><strong>During your commute window</strong> (from when the countdown starts until you arrive), the app uses your position, also in the background with the app closed, to notice when you have left and when you are on board, and to count down to your arrival. This needs “Always” permission in iOS. You can limit it under Background location in the app.</li>
-      <li><strong>Outside the commute window</strong>, iOS monitors geofences around your home and work on your device, so the app learns only that you arrived at or left one of them. If you choose “Always” under Background location, iOS’s low-power significant-change service is also used during the rest of the day.</li>
-      <li>Your current position may be used as the starting point of a trip and sent to the transit services above.</li>
+      <li>the trip planner for the country you travel in: Entur (Norway), Trafiklab (Sweden), Digitransit (Finland and Estonia) or TfL (London);</li>
+      <li>Apple, for maps, walking time and place lookup;</li>
+      <li>Entur, for nearby scooters.</li>
     </ul>
-    <p>Your location is processed on your device. It is never sent to or stored by the developer, and never sold or shared for any other purpose.</p>
+    <p>The weather forecast (MET Norway) and the address search (Entur and Apple) get it rounded to about 1 kilometre. What you type in the address search goes there too. Outside Norway, what you type in the station search goes to the trip planner for that country. Commutez does not store your location anywhere off your phone, but these services may log the requests under their own terms.</p>
 
-    <h2>Notifications</h2>
-    <p>Departure alerts, Live Activities and the countdown badge are scheduled locally on your device. If you send feedback, the app may ask permission to notify you when the developer replies. That notification is delivered through Apple's iCloud (CloudKit) service.</p>
-
-    <h2>Feedback you choose to send</h2>
-    <p>If you send feedback from inside the app, it is stored in the app's CloudKit database at Apple. A feedback report contains:</p>
+    <h2>Feedback</h2>
+    <p>If you send feedback from the app, the following goes to the developer through Apple’s iCloud (CloudKit):</p>
     <ul>
-      <li>your message, and a screenshot if you choose to attach one,</li>
-      <li>diagnostics shown to you before sending: app version, iOS version, device model, language, and a summary of your settings (for example which planner and alerts are in use),</li>
-      <li>if you allow it, the departures shown at the time, for example line numbers and times.</li>
+      <li>your text;</li>
+      <li>a screenshot, if you attach one;</li>
+      <li>a few technical lines shown before you send: version, iOS and model, language and settings. If you tick “Include trip details”, the plan’s times, lines and delays and the app’s latest decisions are included too.</li>
     </ul>
-    <p>Diagnostics never include your addresses or coordinates. The developer sees an anonymous CloudKit identifier, not your name or Apple ID, unless you write it in your message. If you are not signed in to iCloud, feedback is sent by email instead, and the developer then sees your email address.</p>
-    <p>Feedback is kept only as long as it is needed to follow up, and is deleted on request.</p>
+    <p>Addresses, place names and coordinates are never sent, but a screenshot can show them, so crop it if needed. The developer sees only an anonymous iCloud ID, not your name or Apple ID. Reports are kept until you or the developer delete them. You can delete them yourself in the app under Settings › 04 APP › Your reports, or all at once with Delete my data in iCloud. If you choose to send by e-mail instead, it goes from your own mail app with your sender address.</p>
 
-    <h2>What Commutez does not do</h2>
-    <ul>
-      <li>No user accounts or sign-in</li>
-      <li>No advertising, analytics or crash-reporting SDKs</li>
-      <li>No tracking across apps or websites, and no data brokers</li>
-      <li>No selling or sharing of personal data</li>
-    </ul>
+    <h2>Who is responsible, and your rights</h2>
+    <p>Commutez is developed by Kristian Frydstad, Norway, who is the data controller for the little data described here. Under the GDPR you can ask for access to, correction of, or deletion of personal data the developer holds about you. In practice that is only feedback you have sent. Write to <a href="mailto:support@commutez.app">support@commutez.app</a>. You also have the right to complain to the Norwegian Data Protection Authority (<a href="https://www.datatilsynet.no/en/">Datatilsynet</a>).</p>
 
-    <h2>Your rights</h2>
-    <p>Under the GDPR you can ask for access to, correction of, or deletion of personal data the developer holds about you. In practice that is only feedback you have sent. Write to <a href="mailto:support@commutez.app">support@commutez.app</a>. You can delete everything stored on your device by deleting the app. Data in your iCloud is managed in your Apple ID settings. You also have the right to complain to the Norwegian Data Protection Authority (<a href="https://www.datatilsynet.no/en/">Datatilsynet</a>).</p>
+    <h2>Contact</h2>
+    <p><a href="mailto:support@commutez.app">support@commutez.app</a></p>
 
-    <h2>Children</h2>
-    <p>Commutez is not directed at children under 13 and does not knowingly collect personal data from them.</p>
+    <section id="nb" lang="nb">
+      <h1>Personvernerklæring</h1>
+      <p class="updated">Gjelder fra 11. november 2026 · <a href="/no/support/" hreflang="nb">Brukerstøtte på norsk</a></p>
 
-    <h2>Changes</h2>
-    <p>If this policy changes, the new version will be published on this page with a new effective date.</p>
+      <div class="summary">
+        <p>Commutez er laget av én privatperson. Appen har ingen reklame, ingen analyseverktøy, ingen sporing og ingen tredjepartsbiblioteker.</p>
+      </div>
+
+      <h2>Det som blir på telefonen</h2>
+      <p>Adressene, innstillingene og reisene dine lagres bare på telefonen og på Apple Watch hvis du har den. Alt forsvinner når du sletter appen.</p>
+
+      <h2>Posisjon</h2>
+      <p>Commutez bruker posisjonen din på telefonen til nedtellingen, til å vite om du er hjemme eller på jobb, og til å se når du er om bord. For å planlegge reisen sendes posisjonen din og koordinatene til stedene dine, avrundet til omtrent 10 meter, til:</p>
+      <ul>
+        <li>reiseplanleggeren for landet du reiser i: Entur (Norge), Trafiklab (Sverige), Digitransit (Finland og Estland) eller TfL (London);</li>
+        <li>Apple, for kart, gangtid og stedsoppslag;</li>
+        <li>Entur, for sparkesykler i nærheten.</li>
+      </ul>
+      <p>Værvarselet (Meteorologisk institutt) og adressesøket (Entur og Apple) får den avrundet til omtrent 1 kilometer. Det du skriver i adressesøket, går også dit. Utenfor Norge går det du skriver i stasjonssøket, til reiseplanleggeren for det landet. Commutez lagrer ikke posisjonen din utenfor telefonen, men disse tjenestene kan logge forespørslene etter sine egne vilkår.</p>
+
+      <h2>Tilbakemelding</h2>
+      <p>Sender du tilbakemelding fra appen, går dette til utvikleren gjennom Apples iCloud (CloudKit):</p>
+      <ul>
+        <li>teksten din;</li>
+        <li>et skjermbilde hvis du legger ved et;</li>
+        <li>noen tekniske linjer som vises før du sender: versjon, iOS og modell, språk og innstillinger. Krysser du av for «Ta med reisedetaljer», kommer også planens tider, linjer og forsinkelser og appens siste beslutninger med.</li>
+      </ul>
+      <p>Det sendes aldri adresser, stedsnavn eller koordinater, men et skjermbilde kan vise dem, så beskjær ved behov. Utvikleren ser bare en anonym ID fra iCloud, ikke navnet ditt eller Apple-ID-en din. Rapportene ligger til du eller utvikleren sletter dem. Du kan slette dem selv i appen under Innstillinger › 04 APP › Dine rapporter, eller alt på én gang med Slett mine data i iCloud. Velger du å sende med e-post i stedet, går den fra din egen e-postapp med din avsenderadresse.</p>
+
+      <h2>Ansvarlig og dine rettigheter</h2>
+      <p>Commutez er utviklet av Kristian Frydstad, Norge, som er behandlingsansvarlig for de få opplysningene som er beskrevet her. Etter personvernforordningen (GDPR) kan du be om innsyn i, retting av eller sletting av personopplysninger utvikleren har om deg. I praksis gjelder det bare tilbakemeldinger du har sendt. Skriv til <a href="mailto:support@commutez.app">support@commutez.app</a>. Du har også rett til å klage til <a href="https://www.datatilsynet.no/">Datatilsynet</a>.</p>
+
+      <h2>Kontakt</h2>
+      <p><a href="mailto:support@commutez.app">support@commutez.app</a></p>
+    </section>
   </main>
 
   <footer>
